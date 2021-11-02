@@ -4,6 +4,7 @@ const { Schema } = require('mongoose');
 const todoSchema = new Schema({
   task:{
      type: String,
+     required: true,
   },
   day: {
     type: String,
