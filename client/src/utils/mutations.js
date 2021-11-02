@@ -22,35 +22,31 @@ export const LOGIN_USER = gql`
     }
   }
 `;
-export const SAVE_BOOK = gql`
-  mutation saveBook($input: BookInput!) {
-    saveBook(input: $input) {
+export const SAVE_TODO = gql`
+  mutation saveTodo($input: TodoInput!) {
+    saveTodo(input: $input) {
         _id
         username
-        savedBooks{
-            bookId
-            authors
-            description
-            title
-            image
-            link    
+        savedTodo{
+           task
+           day
+           month
+           todoId  
         }
     }
   }
 `;
 
-export const DELETE_BOOK = gql`
-  mutation deleteBook($bookId: String!) {
-    deleteBook(bookId: $bookId) {
+export const DELETE_TODO = gql`
+  mutation deleteTodo($todoId: String!) {
+    deleteTodo(todoId: $todoId) {
         _id
         username
-        savedBooks{
-            bookId
-            authors
-            description
-            title
-            image
-            link
+        savedTodo{
+          task
+          day
+          month
+          todoId  
       }
     }
   }
