@@ -6,14 +6,14 @@ const typeDefs = gql`
     username: String!
     email: String!
     password: String!
-    savedNotes: [Notes]
+    savedTodos: [Todo]
   }
 
-  type Notes {
-    todo: [String]
+  type Todo {
+    task: String!
     day: String!
     month: String!
-    notesId: String!
+    todoId: String!
   }
 
   type Auth {
@@ -21,8 +21,8 @@ const typeDefs = gql`
     user: User
   }
 
-  input NotesInput {
-    todo: [String]
+  input TodoInput {
+    task: String!
     day: String!
     month: String!
     notesId: String!
@@ -36,8 +36,8 @@ const typeDefs = gql`
   type Mutation {
     createUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    saveNotes(input: NotesInput!): User
-    deleteNotes(notesId: String!): User
+    saveTodo(input: TodoInput!): User
+    deleteTodo(todoId: String!): User
   }
 `;
 
