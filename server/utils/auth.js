@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-
+require('dotenv').config()
 const secret = 'mysecretssshhhhhhh';
 const expiration = '2h';
 
