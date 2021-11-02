@@ -27,7 +27,7 @@ export const SAVE_TODO = gql`
     saveTodo(input: $input) {
         _id
         username
-        savedTodo{
+        savedTodos{
            task
            day
            month
@@ -42,7 +42,7 @@ export const DELETE_TODO = gql`
     deleteTodo(todoId: $todoId) {
         _id
         username
-        savedTodo{
+        savedTodos{
           task
           day
           month
