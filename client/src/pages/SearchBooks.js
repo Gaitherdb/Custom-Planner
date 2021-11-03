@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
+import DatePicker from 'react-date-picker';
+// import 'react-calendar/dist/Calendar.css';
 import { useMutation } from '@apollo/client';
 import { SAVE_BOOK } from '../utils/mutations';
 import Auth from '../utils/auth';
@@ -7,86 +9,92 @@ import { searchGoogleBooks } from '../utils/API';
 import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
 
 const SearchBooks = () => {
+
+  const [value, onChange] = useState(new Date());
   // create state for holding returned google api data
-  const [searchedBooks, setSearchedBooks] = useState([]);
+  // const [searchedBooks, setSearchedBooks] = useState([]);
   // create state for holding our search field data
-  const [searchInput, setSearchInput] = useState('');
+  // const [searchInput, setSearchInput] = useState('');
 
   // create state to hold saved bookId values
-  const [savedBookIds, setSavedBookIds] = useState(getSavedBookIds());
+  // const [savedBookIds, setSavedBookIds] = useState(getSavedBookIds());
 
-  const [saveBook, { error }] = useMutation(SAVE_BOOK);
-  // useEffect hook to save `savedBookIds` list to localStorage on component unmount
-  useEffect(() => {
-    return () => saveBookIds(savedBookIds);
-  });
+  // const [saveTodo, { error }] = useMutation(SAVE_TODO);
+  // // useEffect hook to save `savedBookIds` list to localStorage on component unmount
+  // useEffect(() => {
+  //   return () => saveBookIds(savedBookIds);
+  // });
 
   // create method to search for books and set state on form submit
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
+  // const handleFormSubmit = async (event) => {
+  //   event.preventDefault();
 
-    if (!searchInput) {
-      return false;
-    }
+  //   if (!searchInput) {
+  //     return false;
+  //   }
 
-    try {
-      const response = await searchGoogleBooks(searchInput);
+  //   try {
+  //     const response = await searchGoogleBooks(searchInput);
 
-      if (!response.ok) {
-        throw new Error('something went wrong!');
-      }
+  //     if (!response.ok) {
+  //       throw new Error('something went wrong!');
+  //     }
 
-      const { items } = await response.json();
+  //     const { items } = await response.json();
 
-      const bookData = items.map((book) => ({
-        bookId: book.id,
-        authors: book.volumeInfo.authors || ['No author to display'],
-        title: book.volumeInfo.title,
-        description: book.volumeInfo.description,
-        image: book.volumeInfo.imageLinks?.thumbnail || '',
-      }));
+  //     const bookData = items.map((book) => ({
+  //       bookId: book.id,
+  //       authors: book.volumeInfo.authors || ['No author to display'],
+  //       title: book.volumeInfo.title,
+  //       description: book.volumeInfo.description,
+  //       image: book.volumeInfo.imageLinks?.thumbnail || '',
+  //     }));
 
-      setSearchedBooks(bookData);
-      setSearchInput('');
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  //     setSearchedBooks(bookData);
+  //     setSearchInput('');
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // };
 
   // create function to handle saving a book to our database
-  const handleSaveBook = async (bookId) => {
-    // find the book in `searchedBooks` state by the matching id
-    const bookToSave = searchedBooks.find((book) => book.bookId === bookId);
-    console.log(bookToSave);
-    // get token
-    const token = Auth.loggedIn() ? Auth.getToken() : null;
+  // const handleSaveBook = async (TodoId) => {
+    // // find the Todo in `searchedTodos` state by the matching id
+    // const TodoToSave = searchedTodos.find((Todo) => Todo.TodoId === TodoId);
+    // console.log(TodoToSave);
+    // // get token
+    // const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-    if (!token) {
-      return false;
-    }
+    // if (!token) {
+    //   return false;
+    // }
 
-    try {
-      const {data} = await saveBook({ variables: { input: bookToSave }});
+    // try {
+    //   const {data} = await saveTodo({ variables: { input: TodoToSave }});
      
-     console.log(data);
+    //  console.log(data);
 
-      // if book successfully saves to user's account, save book id to state
-      setSavedBookIds([...savedBookIds, bookToSave.bookId]);
-    } catch (err) {
-      console.error(err);
-    }
-  };
+    //   // if Todo successfully saves to user's account, save Todo id to state
+    //   setSavedTodoIds([...savedTodoIds, TodoToSave.TodoId]);
+    // } catch (err) {
+    //   console.error(err);
+    // }
+  // };
 
   return (
     <>
       <Jumbotron fluid className='text-light bg-dark'>
         <Container>
-          <h1>Search for Books!</h1>
-          <Form onSubmit={handleFormSubmit}>
+        <DatePicker onChange={onChange}
+        value={value}
+        defaultView={'month'}
+      />
+          
+          {/* <Form onSubmit={handleFormSubmit}>
             <Form.Row>
               <Col xs={12} md={8}>
                 <Form.Control
-                  name='searchInput'
+                  name='notesInput'
                   value={searchInput}
                   onChange={(e) => setSearchInput(e.target.value)}
                   type='text'
@@ -100,18 +108,18 @@ const SearchBooks = () => {
                 </Button>
               </Col>
             </Form.Row>
-          </Form>
+          </Form> */}
         </Container>
       </Jumbotron>
 
       <Container>
-        <h2>
+        {/* <h2>
           {searchedBooks.length
             ? `Viewing ${searchedBooks.length} results:`
             : 'Search for a book to begin'}
-        </h2>
+        </h2> */}
         <CardColumns>
-          {searchedBooks.map((book) => {
+          {/* {searchedBooks.map((book) => {
             return (
               <Card key={book.bookId} border='dark'>
                 {book.image ? (
@@ -139,7 +147,7 @@ const SearchBooks = () => {
                 </Card.Body>
               </Card>
             );
-          })}
+          })} */}
         </CardColumns>
       </Container>
     </>
