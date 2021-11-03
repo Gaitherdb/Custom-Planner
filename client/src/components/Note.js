@@ -1,5 +1,5 @@
 //note div will act as the parent div for the note component
-
+import React, { useState } from 'react';
 const Note = () => {
     return <div className='note'>
         <span>Whad up, this is a test for the first note.</span>
