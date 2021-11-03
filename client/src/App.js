@@ -7,8 +7,8 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context'; 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import SearchBooks from './pages/SearchBooks';
-// import SavedBooks from './pages/SavedBooks';
+import Home from './pages/Home';
+
 import Navbar from './components/Navbar';
 
 // Construct our main GraphQL API endpoint
@@ -42,7 +42,7 @@ function App() {
       <>
         <Navbar />
         <Switch>
-          <Route exact path='/' component={SearchBooks} />
+          <Route exact path='/' component={Home} />
           {/* <Route exact path='/day/:dayId' component={SavedBooks} /> */}
           <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
         </Switch>
