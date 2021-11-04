@@ -15,6 +15,11 @@ const Home = () => {
   const [value, onChange] = useState(new Date());
   const [view, setView] = useState("month");
   const [day, setDay] = useState("")
+  // const test = ()=> {
+  //   console.log("hello")
+  //   let x = document.querySelector("react-calendar__tile")
+  //   console.log(x.firstChild)
+  // }
   return (
     <>
       <Jumbotron fluid className='text-light bg-dark'>
@@ -32,7 +37,7 @@ const Home = () => {
       value={value}
       onChange={setView}
       view={view}
-      onClickDay={console.log("hello")}
+      // onClickDay={this.props.navigation.navigate(__dirname + "/day")}
         
       // Auth.loggedIn() ? (.Link as{Link} to='/day'
       //   <>

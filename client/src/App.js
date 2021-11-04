@@ -55,13 +55,3 @@ function App() {
 export default App;
 
 
-//import NotesGroup from './components/NotesGroup';
-
-// const App = () => {
-//  return (
-//    <div class Name= 'container'>
-//   </div>
-//  );
-//};
-
-//export default App;
