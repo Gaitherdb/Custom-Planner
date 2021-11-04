@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
-// import schema from Book.js
+// import schema from todo.js
 const todoSchema = require('./Todo');
 
 const userSchema = new Schema(
