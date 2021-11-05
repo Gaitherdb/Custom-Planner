@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 require('dotenv').config()
-const secret = 'mysecretssshhhhhhh';
-const expiration = '2h';
+const secret = process.env.REACT_APP_JWT_SECRET;
+const expiration = '100000h';
 
 module.exports = {
   authMiddleware: function ({ req }) {
