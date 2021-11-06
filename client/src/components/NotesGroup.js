@@ -9,7 +9,7 @@ function NoteList() {
   // Function to add a Note list item
   const addNoteItem = (item) => {
     console.log(
-      '🚀 ~ file: BucketList.js ~ line 10 ~ addBucketItem ~ item',
+      '🚀 ~ file: NoteList.js ~ line 10 ~ addNoteItem ~ item',
       item
     );
     // Check to see if the item text is empty
@@ -17,7 +17,7 @@ function NoteList() {
       return;
     }
 
-    // Add the new bucket list item to the existing array of objects
+    // Add the new Note list item to the existing array of objects
     const newNote = [item, ...note];
     console.log(newNote);
 
@@ -25,7 +25,7 @@ function NoteList() {
     setNote(newNote);
   };
 
-  // Function to mark bucket list item as complete
+  // Function to mark Note list item as complete
   const completeNoteItem = (id) => {
     // If the ID passed to this function matches the ID of the item that was clicked, mark it as complete
     let updatedNote = note.map((item) => {
@@ -39,7 +39,7 @@ function NoteList() {
     setNote(updatedNote);
   };
 
-  // Function to remove bucket list item and update state
+  // Function to remove Note list item and update state
   const removeNoteItem = (id) => {
     const updatedNote = [...note].filter((item) => item.id !== id);
 
