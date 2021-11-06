@@ -11,9 +11,11 @@ const typeDefs = gql`
 
   type Todo {
     task: String!
-    day: String!
+    day: [Day]
+  }
+  
+  type Day {
     month: String!
-    todoId: String!
   }
 
   type Auth {
