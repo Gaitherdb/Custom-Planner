@@ -10,8 +10,8 @@ import { GET_ME } from '../utils/queries';
 
 const DayTodo = () => {
   // Use `useParams()` to retrieve value of the route parameter `:profileId`
-  const { todoId } = useParams();
-  console.log(todoId)
+  const { dayId } = useParams();
+  console.log(dayId)
   // const { loading, data } = useQuery(QUERY_TODO, {
   //   // pass URL parameter
   //   variables: { todoId: todoId },
@@ -35,7 +35,9 @@ const DayTodo = () => {
             lineHeight: '1.5',
           }}
         >
-          {todoId}
+          Date:_
+          {dayId}
+          
         </blockquote>
       </div>
     </div>
