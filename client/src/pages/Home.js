@@ -3,10 +3,12 @@ import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'reac
 import {useHistory} from 'react-router-dom';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import NotesGroup from '../components/NotesGroup'
+import NotesGroup from '../components/NotesGroup';
+import NoteForm from '../components/NoteForm';
 // import { useMutation } from '@apollo/client';
 // import { SAVE_TODO } from '../utils/mutations';
 import Auth from '../utils/auth';
+
 
 // import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
 
@@ -48,7 +50,7 @@ const Home = () => {
              
           <NotesGroup/>
          
-        
+        <NoteForm/>
       </Container>
     </>
   );
