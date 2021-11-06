@@ -97,11 +97,5 @@ function NoteList() {
     </div>
   );
 }
-//         < div className = 'notes-group'> 
-//             {notes.map(n => <NoteForm content={n} />)}
-//             This is notes
-//         </div>
-//     )
-// }
 
 export default NoteList;
