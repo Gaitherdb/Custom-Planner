@@ -3,7 +3,8 @@ import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'reac
 import {useHistory} from 'react-router-dom';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import NotesGroup from '../components/NotesGroup'
+import NotesGroup from '../components/NotesGroup';
+import testie from '../components/Form';
 // import { useMutation } from '@apollo/client';
 // import { SAVE_TODO } from '../utils/mutations';
 import Auth from '../utils/auth';
@@ -16,16 +17,14 @@ const Home = () => {
   // const [click, onClick] = useState(false)
   const view = "month";
   const history = useHistory();
-  console.log(value)
   const firstUpdate = useRef(true);
+
   useEffect(() => {
     if(firstUpdate.current){
       firstUpdate.current = false;
       return;
     }
-    
       history.push(`/day/${(value.toString().split(' ').slice(1,4).join().replace(/,/g, ""))}`); // This is be executed when the state changes
-    
 }, [value]);
   
  
@@ -43,12 +42,11 @@ const Home = () => {
       onChange={onChange}
       value={value}
       view={view}
-      // onClickDay={!onClick}
       />
              
           <NotesGroup/>
          
-        
+        <testie/>
       </Container>
     </>
   );
