@@ -21,6 +21,15 @@ const DayTodo = () => {
   const history = useHistory();
   const firstUpdate = useRef(true);
 
+  //also for calender
+  useEffect(() => {
+    if(firstUpdate.current){
+      firstUpdate.current = false;
+      return;
+    }
+      history.push(`/day/${(value.toString().split(' ').slice(1,4).join().replace(/,/g, ""))}`); // This is be executed when the state changes
+}, [value]);
+
   // const { loading, data } = useQuery(QUERY_TODO, {
   //   // pass URL parameter
   //   variables: { todoId: todoId },
