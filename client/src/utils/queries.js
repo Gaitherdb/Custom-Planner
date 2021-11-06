@@ -9,9 +9,9 @@ export const GET_ME = gql`
       password
       savedTodos {
         task
-        day
-        month
-        todoId
+        day{
+          month
+        }
       }
     }
   }

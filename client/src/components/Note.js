@@ -11,15 +11,3 @@ const Note = () => {
 
 export default Note;
 
-// Lines 17 - 26 will go in App.Js or where applicable for run. This will import the note group into the application. 
-
-//import NotesGroup from './components/NotesGroup';
-
-// const App = () => {
-//  return (
-//    <div class Name= 'container'>
-//   </div>
-//  );
-//};
-
-//export default App;
