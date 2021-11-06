@@ -8,6 +8,7 @@ import {
 import { setContext } from '@apollo/client/link/context'; 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './pages/Home';
+import Day from './pages/Day';
 
 import Navbar from './components/Navbar';
 
@@ -43,7 +44,7 @@ function App() {
         <Navbar />
         <Switch>
           <Route exact path='/' component={Home} />
-          {/* <Route exact path='/day/:dayId' component={SavedBooks} /> */}
+          <Route exact path='/day/:dayId' component={Day} />
           <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
         </Switch>
       </>
