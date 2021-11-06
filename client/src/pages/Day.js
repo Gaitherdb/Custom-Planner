@@ -6,23 +6,23 @@ import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import NotesGroup from '../components/NotesGroup'
 
-import { QUERY_TODO } from '../utils/queries';
+import { GET_ME } from '../utils/queries';
 
 const DayTodo = () => {
   // Use `useParams()` to retrieve value of the route parameter `:profileId`
   const { todoId } = useParams();
+  console.log(todoId)
+  // const { loading, data } = useQuery(QUERY_TODO, {
+  //   // pass URL parameter
+  //   variables: { todoId: todoId },
+  // });
 
-  const { loading, data } = useQuery(QUERY_TODO, {
-    // pass URL parameter
-    variables: { todoId: todoId },
-  });
+  // const todoBody = data?.me || {};
 
-  const todoBody = data?.me || {};
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-  //bootstrap instead of className
+  // if (loading) {
+  //   return <div>Loading...</div>;
+  // }
+  // //bootstrap instead of className
   return (
     <div className="my-3">
       <div className="bg-light py-4">
@@ -35,7 +35,7 @@ const DayTodo = () => {
             lineHeight: '1.5',
           }}
         >
-          {todoBody}
+          {todoId}
         </blockquote>
       </div>
     </div>
