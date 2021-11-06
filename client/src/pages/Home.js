@@ -18,16 +18,14 @@ const Home = () => {
   // const [click, onClick] = useState(false)
   const view = "month";
   const history = useHistory();
-  console.log(value)
   const firstUpdate = useRef(true);
+
   useEffect(() => {
     if(firstUpdate.current){
       firstUpdate.current = false;
       return;
     }
-    
       history.push(`/day/${(value.toString().split(' ').slice(1,4).join().replace(/,/g, ""))}`); // This is be executed when the state changes
-    
 }, [value]);
   
  
@@ -45,7 +43,6 @@ const Home = () => {
       onChange={onChange}
       value={value}
       view={view}
-      // onClickDay={!onClick}
       />
              
           <NotesGroup/>

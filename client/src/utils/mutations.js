@@ -29,9 +29,9 @@ export const SAVE_TODO = gql`
         username
         savedTodos{
            task
-           day
-           month
-           todoId  
+           day{
+             month
+           } 
         }
     }
   }
