@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
 import { Link, Route, useHistory} from 'react-router-dom';
 import Calendar from 'react-calendar';
@@ -13,31 +13,37 @@ import Auth from '../utils/auth';
 
 const Home = () => {
   const [value, onChange] = useState(new Date());
+  // const [click, onClick] = useState(false)
   const view = "month";
-  var params = (value.toString().split(' ').slice(1,4).join().replace(/,/g, ""));
   const history = useHistory();
-  const handleClick = () => history.push(`/day/${params}`);
+  console.log(value)
+  const firstUpdate = useRef(true);
+  useEffect(() => {
+    if(firstUpdate.current){
+      firstUpdate.current = false;
+      return;
+    }
+    
+      history.push(`/day/${(value.toString().split(' ').slice(1,4).join().replace(/,/g, ""))}`); // This is be executed when the state changes
+    
+}, [value]);
   
+ 
   return (
     <>
-      <Jumbotron fluid className='text-light bg-dark'>
+      {/* <Jumbotron fluid className='text-light bg-dark'>
         <Container>
         
         </Container>
-      </Jumbotron>
+      </Jumbotron> */}
 
       <Container>
       <Calendar
-      //testing things out
-      
      showNavigation={true}
       onChange={onChange}
       value={value}
       view={view}
-      onClickDay={handleClick}
-
-
-      
+      // onClickDay={!onClick}
       />
              
           <NotesGroup/>
