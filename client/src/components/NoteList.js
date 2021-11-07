@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 
 const NoteList = ({ todos }) => {
   console.log(todos)
-  // if (!todos.length) {
-  //   return <h3>No notes yet</h3>;
-  // }
+  if (!todos) {
+    return <h3>No notes yet</h3>;
+  }
 
   return (
     <div>
