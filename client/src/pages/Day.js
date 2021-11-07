@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef  } from 'react';
 import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
 import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 import {useHistory} from 'react-router-dom';
 
 
@@ -59,7 +60,7 @@ const DayTodo = () => {
         </blockquote>
       </div>
 
-      <Container>
+      <Container className='calendar-container'>
       <Calendar
      showNavigation={true}
       onChange={onChange}
