@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
-import {useHistory} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import NotesGroup from '../components/NotesGroup';
+import NoteList from '../components/NoteList';
 import NoteForm from '../components/NoteForm';
+import { useQuery } from '@apollo/client';
+import { GET_ME } from '../utils/queries';
 // import { useMutation } from '@apollo/client';
 // import { SAVE_TODO } from '../utils/mutations';
 import Auth from '../utils/auth';
@@ -14,21 +16,30 @@ import Auth from '../utils/auth';
 
 
 const Home = () => {
+  const { loading, data } = useQuery(GET_ME);
+  const todos = data?.me || [];
   const [value, onChange] = useState(new Date());
-  // const [click, onClick] = useState(false)
   const view = "month";
   const history = useHistory();
   const firstUpdate = useRef(true);
+  console.log("todos")
+  console.log(todos.savedTodos)
+  // const { loading, data} = useQuery(GET_ME);
+  // const userData = data?.me;
+  // console.log(userData)
 
   useEffect(() => {
-    if(firstUpdate.current){
+    if (firstUpdate.current) {
       firstUpdate.current = false;
       return;
     }
-      history.push(`/day/${(value.toString().split(' ').slice(1,4).join().replace(/,/g, ""))}`); // This is be executed when the state changes
-}, [value]);
-  
- 
+    history.push(`/day/${(value.toString().split(' ').slice(1, 4).join().replace(/,/g, ""))}`); // This is be executed when the state changes
+  }, [value]);
+
+  // if (loading) {
+  //   return <h2>LOADING...</h2>;
+  // }
+
   return (
     <>
       {/* <Jumbotron fluid className='text-light bg-dark'>
@@ -38,16 +49,28 @@ const Home = () => {
       </Jumbotron> */}
 
       <Container>
-      <Calendar
-     showNavigation={true}
-      onChange={onChange}
-      value={value}
-      view={view}
-      />
-             
-          <NotesGroup/>
-         
-        <NoteForm/>
+        <Calendar
+          showNavigation={true}
+          onChange={onChange}
+          value={value}
+          view={view}
+        />
+
+        <NoteForm
+        value={value.toString().split(' ').slice(1, 4).join().replace(/,/g, "")}
+        />
+
+        <div className="col-12 col-md-8 mb-3">
+          {loading ? (
+            <div>Loading...</div>
+          ) : (
+            <NoteList
+              todos={todos.savedTodos}
+              value={value.toString().split(' ').slice(1, 4).join().replace(/,/g, "")}
+            />
+          )}
+        </div>
+
       </Container>
     </>
   );
