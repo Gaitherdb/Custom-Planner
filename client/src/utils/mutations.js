@@ -23,13 +23,14 @@ export const LOGIN_USER = gql`
   }
 `;
 export const SAVE_TODO = gql`
-  mutation saveTodo($task: String) {
-    saveTodo(task: $task) {
+  mutation saveTodo($task: String, $date: String) {
+    saveTodo(task: $task, date: $date) {
         _id
         username
         savedTodos{
            task
            createdAt
+           date
         }
     }
   }

@@ -13,6 +13,7 @@ const typeDefs = gql`
     _id: ID!
     task: String
     createdAt: String
+    date: String
   }
 
   type Auth {
@@ -28,7 +29,7 @@ const typeDefs = gql`
   type Mutation {
     createUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    saveTodo(task: String): User
+    saveTodo(task: String, date: String): User
     deleteTodo(todoId: String!): User
   }
 `;

@@ -2,9 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
 import Calendar from 'react-calendar';
 import { useHistory } from 'react-router-dom';
-
-
-// Import the `useParams()` hook
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import NoteList from '../components/NoteList'
@@ -18,9 +15,15 @@ import { GET_ME } from '../utils/queries';
 
 const DayTodo = () => {
   const { dayId } = useParams();
-  console.log(dayId)
   const { loading, data } = useQuery(GET_ME);
-  const todos = data?.me || [];
+  let todos = data?.me || [];
+
+  if(!loading){
+    var thisPageTodo = todos.savedTodos.filter(todo => todo.date === dayId)
+  }
+  console.log("thispagetodo")
+  console.log(thisPageTodo)
+  // .map(todo => todo.task)
   //for calender
   const [value, onChange] = useState(new Date());
   // const [click, onClick] = useState(false)
@@ -37,17 +40,6 @@ const DayTodo = () => {
     history.push(`/day/${(value.toString().split(' ').slice(1, 4).join().replace(/,/g, ""))}`); // This is be executed when the state changes
   }, [value]);
 
-  // const { loading, data } = useQuery(QUERY_TODO, {
-  //   // pass URL parameter
-  //   variables: { todoId: todoId },
-  // });
-
-  // const todoBody = data?.me || {};
-
-  // if (loading) {
-  //   return <div>Loading...</div>;
-  // }
-  // //bootstrap instead of className
   return (
     <div className="my-3">
       <div className="bg-light py-4">
@@ -82,7 +74,7 @@ const DayTodo = () => {
             <div>Loading...</div>
           ) : (
             <NoteList
-              todos={todos.savedTodos}
+              todos={thisPageTodo}
               value={value.toString().split(' ').slice(1, 4).join().replace(/,/g, "")}
             />
           )}

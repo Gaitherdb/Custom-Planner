@@ -41,12 +41,12 @@ const resolvers = {
     },
     // save a book to a user's `savedBooks` field by adding it to the set (to prevent duplicates)
     // user comes from `req.user` created in the auth middleware function
-    async saveTodo(parent, {task}, context) {
+    async saveTodo(parent, {task, date}, context) {
       
       if (context.user) {
         const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $addToSet: { savedTodos: {task}} },
+          { $addToSet: { savedTodos: {task, date}} },
           { new: true, runValidators: true }
         );
           console.log(updatedUser)

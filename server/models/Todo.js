@@ -11,6 +11,9 @@ const todoSchema = new Schema({
     default: Date.now,
     get: (timestamp) => dateFormat(timestamp),
   },
+  date: {
+    type: String
+  },
   // day: [daySchema],
   //might not need if schemas get their own id
   // todoId: {

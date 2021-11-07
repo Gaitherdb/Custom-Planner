@@ -1,7 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const NoteList = ({ todos }) => {
+  let { dayId } = useParams();
+  if (!dayId) {
+    dayId = new Date().toString().split(' ').slice(1, 4).join().replace(/,/g, "");
+  } 
+  console.log("todos")
   console.log(todos)
   if (!todos) {
     return <h3>No notes yet</h3>;
