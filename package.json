@@ -14,5 +14,10 @@
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^5.1.0"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "styled-components": "^5.3.3",
+    "webfontloader": "^1.6.28"
   }
 }
