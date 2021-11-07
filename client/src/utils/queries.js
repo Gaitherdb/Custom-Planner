@@ -8,10 +8,9 @@ export const GET_ME = gql`
       email
       password
       savedTodos {
+        _id
         task
-        day{
-          month
-        }
+        createdAt
       }
     }
   }
