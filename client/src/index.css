@@ -17,11 +17,13 @@ h6 {
   font-style: italic;
 }
 
+
+
 .note {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: rgb(70, 155, 70);
+  background-color: rgb(101, 109, 74);
   border-radius: 10px;
   padding: 1rem;
   min-height: 170px;
@@ -37,4 +39,24 @@ h6 {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.light-color {
+  background-color: rgb(101, 109, 74)
+}
+
+.dark-color {
+  background-color: rgb(65, 72, 51)
+}
+
+.background-color {
+  background-color: rgb(237, 224, 212)
+}
+
+.accent-color {
+  background-color: rgb(127, 85, 57)
+}
+
+.accent-color-light {
+  background-color: rgb(166, 138, 100)
 }
