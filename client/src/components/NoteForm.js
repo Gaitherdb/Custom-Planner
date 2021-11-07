@@ -179,31 +179,4 @@ function NoteForm(props) {
     //     );
     // }
 
-
-// const Home = () => {
-//     const [notes, setNotes] = React.useState(()=>localStorage.getItem('notes'))
-
-//     const onAdd = (value) => {
-//         setNotes(prevState => {
-//             return [
-//                 ...prevState,
-//                 // generate a new note with defaults based on this class
-//                 new Note(value).getNote()
-//             ]
-//         })
-//     }
-
-//     return (
-//         <>
-//             <h1>Title</h1>
-//             {/* pass the add note function to the NoteForm, so it can be called from NoteForm */}
-//             <NoteForm onAdd={onAdd}/>
-//             {/* map over the array of notes and return the element */}
-//             {notes.map(n => <Note content={n} />)}
-
-
-//         </>
-//     )
-// }
-
 export default NoteForm
