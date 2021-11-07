@@ -12,7 +12,7 @@ const NoteList = ({ todos }) => {
       <h3>What is on your note list?</h3>
       {todos &&
         todos.map((todo) => (
-          <div key={todo._id} className="card mb-3">
+          <div variant: key={todo._id} className="card mb-3 dark-color">
             <h4 className="card-header bg-primary text-light p-2 m-0">
               {todo.task} 
             
