@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const NoteList = ({ todos }) => {
   console.log(todos)
-  if (!todos.length) {
+  if (!todos) {
     return <h3>No notes yet</h3>;
   }
 
