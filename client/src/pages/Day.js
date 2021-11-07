@@ -7,7 +7,7 @@ import {useHistory} from 'react-router-dom';
 // Import the `useParams()` hook
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import NotesGroup from '../components/NotesGroup'
+import NoteList from '../components/NoteList'
 
 import { GET_ME } from '../utils/queries';
 

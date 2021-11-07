@@ -23,15 +23,13 @@ export const LOGIN_USER = gql`
   }
 `;
 export const SAVE_TODO = gql`
-  mutation saveTodo($input: TodoInput!) {
-    saveTodo(input: $input) {
+  mutation saveTodo($task: String) {
+    saveTodo(task: $task) {
         _id
         username
         savedTodos{
            task
-           day{
-             month
-           } 
+           createdAt
         }
     }
   }
