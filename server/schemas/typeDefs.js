@@ -10,24 +10,14 @@ const typeDefs = gql`
   }
 
   type Todo {
-    task: String!
-    day: [Day]
-  }
-  
-  type Day {
-    month: String!
+    _id: ID!
+    task: String
+    createdAt: String
   }
 
   type Auth {
     token: ID!
     user: User
-  }
-
-  input TodoInput {
-    task: String!
-    day: String!
-    month: String!
-    notesId: String!
   }
 
   type Query {
@@ -38,7 +28,7 @@ const typeDefs = gql`
   type Mutation {
     createUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    saveTodo(input: TodoInput!): User
+    saveTodo(task: String): User
     deleteTodo(todoId: String!): User
   }
 `;

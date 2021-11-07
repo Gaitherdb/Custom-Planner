@@ -1,5 +1,5 @@
 const User = require('./User');
 const Todo = require('./Todo');
-const Day = require('./Day');
+// const Day = require('./Day');
 
-module.exports = { User, Todo, Day};
+module.exports = { User, Todo};
