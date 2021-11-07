@@ -57,7 +57,7 @@ const Home = () => {
         />
 
         <NoteForm
-        value={value.toString().split(' ').slice(1, 4).join().replace(/,/g, "")}
+          value={value.toString().split(' ').slice(1, 4).join().replace(/,/g, "")}
         />
 
         <div className="col-12 col-md-8 mb-3">
