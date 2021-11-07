@@ -66,15 +66,6 @@ const DayTodo = () => {
         </blockquote>
       </div>
 
-<<<<<<< HEAD
-      <Container className='calendar-container'>
-      <Calendar
-     showNavigation={true}
-      onChange={onChange}
-      value={value}
-      view={view}
-      />
-=======
       <Container>
         <Calendar
           showNavigation={true}
@@ -96,7 +87,6 @@ const DayTodo = () => {
             />
           )}
         </div>
->>>>>>> 932fe3ef600739c0ec51621c8af12c3c055348a1
       </Container>
 
     </div>
