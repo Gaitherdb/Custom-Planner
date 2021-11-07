@@ -24,9 +24,12 @@ const Home = () => {
   const firstUpdate = useRef(true);
   console.log("todos")
   console.log(todos.savedTodos)
-  // const { loading, data} = useQuery(GET_ME);
-  // const userData = data?.me;
-  // console.log(userData)
+  const todayDate = new Date().toString().split(' ').slice(1, 4).join().replace(/,/g, "");
+  if(!loading){
+    var thisPageTodo = todos.savedTodos.filter(todo => todo.date === todayDate)
+  }
+  console.log("thispagetodo")
+  console.log(thisPageTodo)
 
   useEffect(() => {
     if (firstUpdate.current) {
@@ -65,7 +68,7 @@ const Home = () => {
             <div>Loading...</div>
           ) : (
             <NoteList
-              todos={todos.savedTodos}
+              todos={thisPageTodo}
               value={value.toString().split(' ').slice(1, 4).join().replace(/,/g, "")}
             />
           )}
