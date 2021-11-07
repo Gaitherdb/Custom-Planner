@@ -17,21 +17,18 @@ const DayTodo = () => {
   const { dayId } = useParams();
   const { loading, data } = useQuery(GET_ME);
   let todos = data?.me || [];
-
+  const [value, onChange] = useState(new Date());
+  const view = "month";
+  const history = useHistory();
+  const firstUpdate = useRef(true);
+  if(todos.savedTodos){
   if(!loading){
     var thisPageTodo = todos.savedTodos.filter(todo => todo.date === dayId)
   }
   console.log("thispagetodo")
   console.log(thisPageTodo)
-  // .map(todo => todo.task)
+}
   //for calender
-  const [value, onChange] = useState(new Date());
-  // const [click, onClick] = useState(false)
-  const view = "month";
-  const history = useHistory();
-  const firstUpdate = useRef(true);
-
-  //also for calender
   useEffect(() => {
     if (firstUpdate.current) {
       firstUpdate.current = false;

@@ -22,8 +22,6 @@ function NoteForm(props) {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log("formsubmit")
-    console.log(task)
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
     if (!token) {
@@ -36,11 +34,8 @@ function NoteForm(props) {
           date
         },
       });
-      console.log(data);
-
+      
       setTask('');
-      console.log("afterreset")
-      console.log(task)
     } catch (err) {
       console.error(err);
     }

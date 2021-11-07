@@ -22,14 +22,16 @@ const Home = () => {
   const view = "month";
   const history = useHistory();
   const firstUpdate = useRef(true);
-  console.log("todos")
-  console.log(todos.savedTodos)
-  const todayDate = new Date().toString().split(' ').slice(1, 4).join().replace(/,/g, "");
-  if(!loading){
-    var thisPageTodo = todos.savedTodos.filter(todo => todo.date === todayDate)
+  if (todos.savedTodos) {
+    console.log("todos")
+    console.log(todos.savedTodos)
+    const todayDate = new Date().toString().split(' ').slice(1, 4).join().replace(/,/g, "");
+    if (!loading) {
+      var thisPageTodo = todos.savedTodos.filter(todo => todo.date === todayDate)
+    }
+    console.log("thispagetodo")
+    console.log(thisPageTodo)
   }
-  console.log("thispagetodo")
-  console.log(thisPageTodo)
 
   useEffect(() => {
     if (firstUpdate.current) {
