@@ -1,8 +1,46 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
+import NoteForm from '../components/NoteForm';
 
 const NoteList = ({ todos }) => {
-  console.log(todos)
+  //if we want to include date in the future
+  let { dayId } = useParams();
+  if (!dayId) {
+    dayId = new Date().toString().split(' ').slice(1, 4).join().replace(/,/g, "");
+  }
+  console.log("todos")
+  console.log(todos._id)
+
+  const [edit, setEdit] = useState({
+    id: null,
+    value: '',
+    date: '',
+  });
+
+  // const editBucketItem = (itemId, newValue) => {
+  //   // Make sure that the value isn't empty
+  //   if (!newValue.text) {
+  //     return;
+  //   }
+
+  //   // We use the "prev" argument provided with the useState hook to map through our list of items
+  //   // We then check to see if the item ID matches the if of the item that was clicked and if so we set it to a new value
+  //   setBucket((prev) =>
+  //     prev.map((item) => (item.id === itemId ? newValue : item))
+  //   );
+  // };
+
+  const submitUpdate = (value) => {
+    if (value)
+    // editBucketItem(edit.id, value);
+    setEdit({ id: null, value: '', date: '' });
+  };
+
+
+  if (edit.id) {
+    return <NoteForm edit={edit} onSubmit={submitUpdate} />;
+  }
+  
   if (!todos) {
     return <h3>No notes yet</h3>;
   }
@@ -14,9 +52,13 @@ const NoteList = ({ todos }) => {
         todos.map((todo) => (
           <div key={todo._id} className="card mb-3 dark-color">
             <h4 className="card-header bg-primary text-light p-2 m-0">
-              {todo.task} 
-            
+              {todo.task}
             </h4>
+            <div className="icons">
+              {console.log(todo)}
+              <p onClick={() => setEdit({ id: todo._id, value: todo.task, date: todo.date })}> ✏️</p>
+              {/* <p onClick={() => props.removeBucketItem(item.id)}> 🗑️</p> */}
+            </div>
           </div>
         ))}
     </div>

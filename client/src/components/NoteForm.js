@@ -1,105 +1,56 @@
-import Note from './Note';
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { SAVE_TODO } from '../utils/mutations';
-import { GET_ME } from '../utils/queries';
+// import { GET_ME } from '../utils/queries';
 import Auth from '../utils/auth';
 
 
-
-
 function NoteForm(props) {
-    // const [inputTask, setTask] = useState('');
-    // // const [date, setDate] = useState(new Date());
-    
-    // console.log(props.children)
-    
-      const [task, setTask] = useState('');
-  // const [notes, setNotes] = useState([]);
-  const [saveTodo, {error}] = useMutation(SAVE_TODO);
+  let { dayId } = useParams();
+  if (!dayId) {
+    dayId = new Date().toString().split(' ').slice(1, 4).join().replace(/,/g, "");
+  }
+console.log(props)
+  const date = dayId;
+  const [task, setTask] = useState('');
+  const [_id, set_id] = useState('');
+  const [saveTodo, { error }] = useMutation(SAVE_TODO);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log("formsubmit")
-    console.log(task)
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
     if (!token) {
       return false;
     }
+
     try {
       const { data } = await saveTodo({
         variables: {
-          task
+          _id,
+          task,
+          date
         },
       });
-      console.log(data);
-
+      set_id('');
       setTask('');
-      console.log("afterreset")
-      console.log(task)
     } catch (err) {
       console.error(err);
     }
   };
 
-//   const handleChange = (event) => {
-    
-//     const {value} = event.target;
-   
 
-// //     console.log("setnote value")
-// // console.log(value)
-// //     if (name === 'note') {
-// //       setNote(value);
-// //     }
-//   };
+ 
+  // Add the new Note list item to the existing array of objects
+  // const newNote = [item, ...note];
+  // console.log(newNote);
 
-  // console.log("what")
-  // console.log(props.value);
-
-  // Function to add a Note list item
-  // const addNoteItem = async (item) => {
-  //   console.log(
-  //     '🚀 ~ file: NoteList.js addNoteItem ~ item',
-  //     item
-  //   );
-  //   // Check to see if the item text is empty
-  //   // if (!item.task) {
-  //   //   return;
-  //   // }
-  //   const token = Auth.loggedIn() ? Auth.getToken() : null;
-
-  //   if (!token) {
-  //     return false;
-  //   }
-  //   try {
-  //     const { data } = await saveTodo({
-  //       variables: {task: note},
-  //     });
-
-  //     setNote('');
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-
-    // Add the new Note list item to the existing array of objects
-    // const newNote = [item, ...note];
-    // console.log(newNote);
-
-    // Call setNote to update state with our new set of Note list items
-    // setNote(newNote);
+  // Call setNote to update state with our new set of Note list items
+  // setNote(newNote);
   // };
 
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     props.onSubmit({
-    //         task: inputTask
 
-    //     });
-    //     setTask('');
-    // };
     // const handleChange = (e) => {
     //     setTask(e.target.value);
     //   };
@@ -108,6 +59,7 @@ function NoteForm(props) {
           <h3>Todo List</h3>
     
           {Auth.loggedIn() ? (
+            !props.edit ? (
             <>
              
               <form
@@ -137,6 +89,25 @@ function NoteForm(props) {
                 )}
               </form>
             </>
+            ) : ( <div>
+              <h3>Update entry: {props.edit.value}</h3>
+              <form className="" onSubmit={handleFormSubmit}>
+                <input
+                  type="text"
+                  placeholder={props.edit.value}
+                  value={task}
+                  name="text"
+                  // className="todo-input"
+                  onChange={(e) => {setTask(e.target.value); set_id(props.edit._id)
+                  }}
+               
+                  // onChange={(e) => set_id(props.edit.value._id)}
+                  
+                ></input>
+                <button className="bucket-button">Update</button>
+              </form>
+            </div>
+            )
           ) : (
             <p>
               You need to be logged in to share your thoughts. Please{' '}
