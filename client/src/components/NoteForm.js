@@ -10,10 +10,11 @@ function NoteForm(props) {
   let { dayId } = useParams();
   if (!dayId) {
     dayId = new Date().toString().split(' ').slice(1, 4).join().replace(/,/g, "");
-  } 
-
+  }
+console.log(props)
   const date = dayId;
   const [task, setTask] = useState('');
+  const [_id, set_id] = useState('');
   const [saveTodo, { error }] = useMutation(SAVE_TODO);
 
   const handleFormSubmit = async (event) => {
@@ -27,11 +28,12 @@ function NoteForm(props) {
     try {
       const { data } = await saveTodo({
         variables: {
+          _id,
           task,
           date
         },
       });
-      
+      set_id('');
       setTask('');
     } catch (err) {
       console.error(err);
@@ -57,6 +59,7 @@ function NoteForm(props) {
           <h3>Todo List</h3>
     
           {Auth.loggedIn() ? (
+            !props.edit ? (
             <>
              
               <form
@@ -86,6 +89,25 @@ function NoteForm(props) {
                 )}
               </form>
             </>
+            ) : ( <div>
+              <h3>Update entry: {props.edit.value}</h3>
+              <form className="" onSubmit={handleFormSubmit}>
+                <input
+                  type="text"
+                  placeholder={props.edit.value}
+                  value={task}
+                  name="text"
+                  // className="todo-input"
+                  onChange={(e) => {setTask(e.target.value); set_id(props.edit._id)
+                  }}
+               
+                  // onChange={(e) => set_id(props.edit.value._id)}
+                  
+                ></input>
+                <button className="bucket-button">Update</button>
+              </form>
+            </div>
+            )
           ) : (
             <p>
               You need to be logged in to share your thoughts. Please{' '}

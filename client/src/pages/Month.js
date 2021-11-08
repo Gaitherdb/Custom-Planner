@@ -9,8 +9,8 @@
 // import NoteForm from '../components/NoteForm';
 // import { GET_ME } from '../utils/queries';
 
-// const DayTodo = () => {
-//   const { dayId } = useParams();
+// const MonthTodo = () => {
+//   const { monthId } = useParams();
 //   const { loading, data } = useQuery(GET_ME);
 //   let todos = data?.me || [];
 //   const [value, onChange] = useState(new Date());
@@ -78,4 +78,4 @@
 //   );
 // };
 
-// export default DayTodo;
+// export default MonthTodo;

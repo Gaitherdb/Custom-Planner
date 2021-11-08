@@ -39,7 +39,7 @@ const resolvers = {
       const token = signToken(user);
       return ({ token, user });
     },
-    // save a book to a user's `savedBooks` field by adding it to the set (to prevent duplicates)
+    // save a note to a user's `savedTodos` field by adding it to the set (to prevent duplicates)
     // user comes from `req.user` created in the auth middleware function
     async saveTodo(parent, {task, date}, context) {
       
@@ -54,7 +54,7 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    // remove a book from `savedBooks`
+    // remove a note from 'savedTodo'
     async deleteTodo(parent, { todoId }, context) {
       if (context.user) {
         const updatedUser = await User.findOneAndUpdate(
