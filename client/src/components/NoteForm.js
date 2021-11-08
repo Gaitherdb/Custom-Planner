@@ -1,4 +1,3 @@
-import Note from './Note';
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
@@ -7,17 +6,14 @@ import { GET_ME } from '../utils/queries';
 import Auth from '../utils/auth';
 
 
-
-
 function NoteForm(props) {
   let { dayId } = useParams();
   if (!dayId) {
     dayId = new Date().toString().split(' ').slice(1, 4).join().replace(/,/g, "");
   } 
-  const [task, setTask] = useState('');
+
   const date = dayId;
-  console.log("date")
-  console.log(date)
+  const [task, setTask] = useState('');
   const [saveTodo, { error }] = useMutation(SAVE_TODO);
 
   const handleFormSubmit = async (event) => {
@@ -27,6 +23,7 @@ function NoteForm(props) {
     if (!token) {
       return false;
     }
+
     try {
       const { data } = await saveTodo({
         variables: {
@@ -41,46 +38,8 @@ function NoteForm(props) {
     }
   };
 
-  //   const handleChange = (event) => {
 
-  //     const {value} = event.target;
-
-
-  // //     console.log("setnote value")
-  // // console.log(value)
-  // //     if (name === 'note') {
-  // //       setNote(value);
-  // //     }
-  //   };
-
-  // console.log("what")
-  // console.log(props.value);
-
-  // Function to add a Note list item
-  // const addNoteItem = async (item) => {
-  //   console.log(
-  //     '🚀 ~ file: NoteList.js addNoteItem ~ item',
-  //     item
-  //   );
-  //   // Check to see if the item text is empty
-  //   // if (!item.task) {
-  //   //   return;
-  //   // }
-  //   const token = Auth.loggedIn() ? Auth.getToken() : null;
-
-  //   if (!token) {
-  //     return false;
-  //   }
-  //   try {
-  //     const { data } = await saveTodo({
-  //       variables: {task: note},
-  //     });
-
-  //     setNote('');
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-
+ 
   // Add the new Note list item to the existing array of objects
   // const newNote = [item, ...note];
   // console.log(newNote);
@@ -89,14 +48,7 @@ function NoteForm(props) {
   // setNote(newNote);
   // };
 
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     props.onSubmit({
-    //         task: inputTask
 
-    //     });
-    //     setTask('');
-    // };
     // const handleChange = (e) => {
     //     setTask(e.target.value);
     //   };

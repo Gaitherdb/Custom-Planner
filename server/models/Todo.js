@@ -13,14 +13,9 @@ const todoSchema = new Schema({
     get: (timestamp) => dateFormat(timestamp),
   },
   date: {
-    type: String
+    type: String,
+    required: true
   },
-  // day: [daySchema],
-  //might not need if schemas get their own id
-  // todoId: {
-  //   type: String,
-  //   required: true,
-  // },
 });
 
 module.exports = todoSchema;

@@ -22,6 +22,7 @@ const Home = () => {
   const view = "month";
   const history = useHistory();
   const firstUpdate = useRef(true);
+  
   if (todos.savedTodos) {
     console.log("todos")
     console.log(todos.savedTodos)

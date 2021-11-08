@@ -11,9 +11,9 @@ const typeDefs = gql`
 
   type Todo {
     _id: ID!
-    task: String
+    task: String!
     createdAt: String
-    date: String
+    date: String!
   }
 
   type Auth {
