@@ -5,29 +5,26 @@ import { useHistory } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import NoteList from '../components/NoteList'
-
-
 import 'react-calendar/dist/Calendar.css';
-
 import NoteForm from '../components/NoteForm';
-
 import { GET_ME } from '../utils/queries';
 
 const DayTodo = () => {
   const { dayId } = useParams();
   const { loading, data } = useQuery(GET_ME);
   let todos = data?.me || [];
+  console.log(todos)
   const [value, onChange] = useState(new Date());
   const view = "month";
   const history = useHistory();
   const firstUpdate = useRef(true);
-  if(todos.savedTodos){
-  if(!loading){
-    var thisPageTodo = todos.savedTodos.filter(todo => todo.date === dayId)
+  if (todos.savedTodos) {
+    if (!loading) {
+      var thisPageTodo = todos.savedTodos.filter(todo => todo.date === dayId)
+    }
+    console.log("thispagetodo")
+    console.log(thisPageTodo)
   }
-  console.log("thispagetodo")
-  console.log(thisPageTodo)
-}
   //for calender
   useEffect(() => {
     if (firstUpdate.current) {

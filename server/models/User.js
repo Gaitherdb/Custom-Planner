@@ -21,8 +21,7 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    // set savedBooks to be an array of data that adheres to the bookSchema
-    
+    // set savedTodos to be an array of data that adheres to the todoSchema
     savedTodos: [todoSchema],
   },
   // set this to use virtual below

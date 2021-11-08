@@ -1,7 +1,8 @@
 import React from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 const NoteList = ({ todos }) => {
+  //if we want to include date in the future
   let { dayId } = useParams();
   if (!dayId) {
     dayId = new Date().toString().split(' ').slice(1, 4).join().replace(/,/g, "");
@@ -20,7 +21,6 @@ const NoteList = ({ todos }) => {
           <div key={todo._id} className="card mb-3 dark-color">
             <h4 className="card-header bg-primary text-light p-2 m-0">
               {todo.task} 
-            
             </h4>
           </div>
         ))}

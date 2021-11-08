@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { SAVE_TODO } from '../utils/mutations';
-import { GET_ME } from '../utils/queries';
+// import { GET_ME } from '../utils/queries';
 import Auth from '../utils/auth';
 
 

@@ -13,7 +13,7 @@ const typeDefs = gql`
     _id: ID!
     task: String!
     createdAt: String
-    date: String!
+    date: String
   }
 
   type Auth {

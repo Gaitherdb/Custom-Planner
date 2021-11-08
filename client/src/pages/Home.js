@@ -7,22 +7,19 @@ import NoteList from '../components/NoteList';
 import NoteForm from '../components/NoteForm';
 import { useQuery } from '@apollo/client';
 import { GET_ME } from '../utils/queries';
-// import { useMutation } from '@apollo/client';
-// import { SAVE_TODO } from '../utils/mutations';
-import Auth from '../utils/auth';
-
-
+// import Auth from '../utils/auth';
 // import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
 
 
 const Home = () => {
   const { loading, data } = useQuery(GET_ME);
+  console.log(data)
   const todos = data?.me || [];
   const [value, onChange] = useState(new Date());
   const view = "month";
   const history = useHistory();
   const firstUpdate = useRef(true);
-  
+
   if (todos.savedTodos) {
     console.log("todos")
     console.log(todos.savedTodos)
