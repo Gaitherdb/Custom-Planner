@@ -7,26 +7,29 @@ import NoteList from '../components/NoteList';
 import NoteForm from '../components/NoteForm';
 import { useQuery } from '@apollo/client';
 import { GET_ME } from '../utils/queries';
-// import { useMutation } from '@apollo/client';
-// import { SAVE_TODO } from '../utils/mutations';
-import Auth from '../utils/auth';
-
-
+// import Auth from '../utils/auth';
 // import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
 
 
 const Home = () => {
   const { loading, data } = useQuery(GET_ME);
+  console.log(data)
   const todos = data?.me || [];
   const [value, onChange] = useState(new Date());
   const view = "month";
   const history = useHistory();
   const firstUpdate = useRef(true);
-  console.log("todos")
-  console.log(todos.savedTodos)
-  // const { loading, data} = useQuery(GET_ME);
-  // const userData = data?.me;
-  // console.log(userData)
+
+  if (todos.savedTodos) {
+    console.log("todos")
+    console.log(todos.savedTodos)
+    const todayDate = new Date().toString().split(' ').slice(1, 4).join().replace(/,/g, "");
+    if (!loading) {
+      var thisPageTodo = todos.savedTodos.filter(todo => todo.date === todayDate)
+    }
+    console.log("thispagetodo")
+    console.log(thisPageTodo)
+  }
 
   useEffect(() => {
     if (firstUpdate.current) {
@@ -65,7 +68,7 @@ const Home = () => {
             <div>Loading...</div>
           ) : (
             <NoteList
-              todos={todos.savedTodos}
+              todos={thisPageTodo}
               value={value.toString().split(' ').slice(1, 4).join().replace(/,/g, "")}
             />
           )}
