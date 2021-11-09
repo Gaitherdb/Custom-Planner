@@ -4,7 +4,7 @@ import { useMutation } from '@apollo/client';
 import { SAVE_TODO } from '../utils/mutations';
 // import { GET_ME } from '../utils/queries';
 import Auth from '../utils/auth';
-import { SubmitButton } from '../components/Button'
+import { CustomButtonStyle  } from './CustomButtonStyle'
 
 
 function NoteForm(props) {
@@ -79,8 +79,8 @@ console.log(props)
                 </div>
     
                 <div className="col-12 col-lg-3">
-                  <button className="btn btn-primary btn-block py-3" type="submit">
-                    Add Todo Item
+                  <button component={CustomButtonStyle} >
+                    {/* Add Todo Item */}
                   </button>
                 </div>
                 {error && (

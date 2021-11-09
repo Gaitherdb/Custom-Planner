@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 
 
-class customButtonStyle extends Component {
+class CustomButtonStyle extends Component {
     render() {
         return (
 
@@ -23,6 +23,4 @@ class customButtonStyle extends Component {
 }
 
 
-
-
-export default customButtonStyle 
+export default CustomButtonStyle;
