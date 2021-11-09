@@ -14,7 +14,7 @@ const DayTodo = () => {
   const { loading, data } = useQuery(GET_ME);
   let todos = data?.me || [];
   console.log(todos)
-  const [value, onChange] = useState(new Date());
+  const [value, setValue] = useState(new Date());
   const view = "month";
   const history = useHistory();
   const firstUpdate = useRef(true);
@@ -55,14 +55,14 @@ const DayTodo = () => {
       <Container>
         <Calendar
           showNavigation={true}
-          onChange={onChange}
+          onChange={setValue}
           value={value}
           view={view}
         />
         <NoteForm
           value={value.toString().split(' ').slice(1, 4).join().replace(/,/g, "")}
         />
-
+        {todos.savedTodos ? (
         <div className="col-12 col-md-8 mb-3">
           {loading ? (
             <div>Loading...</div>
@@ -73,6 +73,7 @@ const DayTodo = () => {
             />
           )}
         </div>
+        ) : (console.log("i hate you"))}
       </Container>
 
     </div>

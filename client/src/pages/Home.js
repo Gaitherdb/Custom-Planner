@@ -7,7 +7,7 @@ import NoteList from '../components/NoteList';
 import NoteForm from '../components/NoteForm';
 import { useQuery } from '@apollo/client';
 import { GET_ME } from '../utils/queries';
-// import Auth from '../utils/auth';
+import Auth from '../utils/auth';
 // import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
 
 
@@ -15,7 +15,7 @@ const Home = () => {
   const { loading, data } = useQuery(GET_ME);
   console.log(data)
   const todos = data?.me || [];
-  const [value, onChange] = useState(new Date());
+  const [value, setValue] = useState(new Date());
   const view = "month";
   const history = useHistory();
   const firstUpdate = useRef(true);
@@ -39,9 +39,6 @@ const Home = () => {
     history.push(`/day/${(value.toString().split(' ').slice(1, 4).join().replace(/,/g, ""))}`); // This is be executed when the state changes
   }, [value]);
 
-  // if (loading) {
-  //   return <h2>LOADING...</h2>;
-  // }
 
   return (
     <>
@@ -54,7 +51,7 @@ const Home = () => {
       <Container>
         <Calendar
           showNavigation={true}
-          onChange={onChange}
+          onChange={setValue}
           value={value}
           view={view}
         />
@@ -62,7 +59,7 @@ const Home = () => {
         <NoteForm
           value={value.toString().split(' ').slice(1, 4).join().replace(/,/g, "")}
         />
-
+        {todos.savedTodos ? (
         <div className="col-12 col-md-8 mb-3">
           {loading ? (
             <div>Loading...</div>
@@ -73,6 +70,7 @@ const Home = () => {
             />
           )}
         </div>
+        ) : (console.log("hi"))}
 
       </Container>
     </>
