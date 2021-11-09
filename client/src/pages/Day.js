@@ -62,7 +62,7 @@ const DayTodo = () => {
         <NoteForm
           value={value.toString().split(' ').slice(1, 4).join().replace(/,/g, "")}
         />
-
+        {todos.savedTodos ? (
         <div className="col-12 col-md-8 mb-3">
           {loading ? (
             <div>Loading...</div>
@@ -73,6 +73,7 @@ const DayTodo = () => {
             />
           )}
         </div>
+        ) : (console.log("i hate you"))}
       </Container>
 
     </div>
