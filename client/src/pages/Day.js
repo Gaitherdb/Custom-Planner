@@ -14,7 +14,7 @@ const DayTodo = () => {
   const { loading, data } = useQuery(GET_ME);
   let todos = data?.me || [];
   console.log(todos)
-  const [value, onChange] = useState(new Date());
+  const [value, setValue] = useState(new Date());
   const view = "month";
   const history = useHistory();
   const firstUpdate = useRef(true);
@@ -55,7 +55,7 @@ const DayTodo = () => {
       <Container>
         <Calendar
           showNavigation={true}
-          onChange={onChange}
+          onChange={setValue}
           value={value}
           view={view}
         />
