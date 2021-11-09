@@ -15,7 +15,7 @@ const Home = () => {
   const { loading, data } = useQuery(GET_ME);
   console.log(data)
   const todos = data?.me || [];
-  const [value, onChange] = useState(new Date());
+  const [value, setValue] = useState(new Date());
   const view = "month";
   const history = useHistory();
   const firstUpdate = useRef(true);
@@ -51,7 +51,7 @@ const Home = () => {
       <Container>
         <Calendar
           showNavigation={true}
-          onChange={onChange}
+          onChange={setValue}
           value={value}
           view={view}
         />
