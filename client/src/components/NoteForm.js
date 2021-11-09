@@ -5,6 +5,7 @@ import { useMutation } from '@apollo/client';
 import { SAVE_TODO } from '../utils/mutations';
 import { GET_ME } from '../utils/queries';
 import Auth from '../utils/auth';
+import { SubmitButton } from '../components/Button'
 
 
 
@@ -117,16 +118,16 @@ function NoteForm(props) {
                 <div className="col-12 col-lg-9">
                   <textarea
                     name="notes"
-                    placeholder="Add todo item"
+                    placeholder="Add to your todo list..."
                     value={task}
                     className="form-input w-100"
-                    style={{ lineHeight: '1.5', resize: 'vertical' }}
+                    style={{ lineHeight: '2', resize: 'vertical' }}
                     onChange={(e) => setTask(e.target.value)}
                   ></textarea>
                 </div>
     
                 <div className="col-12 col-lg-3">
-                  <button className="btn btn-primary btn-block py-3 dark-color" type="submit">
+                  <button className="btn btn-primary btn-block py-3" type="submit">
                     Add Todo Item
                   </button>
                 </div>
