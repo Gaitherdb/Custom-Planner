@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { useMutation } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import { EDIT_TODO, SAVE_TODO } from '../utils/mutations';
 import Auth from '../utils/auth';
 
@@ -16,11 +16,11 @@ function NoteForm(props) {
   const [todosId, set_id] = useState('');
   const [saveTodo, { error }] = useMutation(SAVE_TODO);
   const [editTodo] = useMutation(EDIT_TODO);
+  
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-   
-console.log(task, date)
+
     try {
       const { data } = await saveTodo({
         variables: {
@@ -29,8 +29,8 @@ console.log(task, date)
         },
       });
       setTask('');
+      //calls for the query on either the homepage or daypage to run again
       props.refetch();
-      console.log("yahooo")
     } catch (err) {
       console.error(err);
     }
@@ -38,9 +38,8 @@ console.log(task, date)
 
   const handleEditSubmit = async (event) => {
     event.preventDefault();
-    console.log("editsubmit")
-    console.log(todosId, task, date)
-    try{
+
+    try {
       const { data } = await editTodo({
         variables: {
           todosId,
@@ -50,11 +49,13 @@ console.log(task, date)
       });
       setTask('');
       set_id('');
+
+      window.location.reload();
     } catch (err) {
       console.error(err);
     }
   };
-  
+
   return (
     <div>
       <h3>Todo List</h3>
@@ -100,7 +101,7 @@ console.log(task, date)
               name="text"
               // className="todo-input"
               onChange={(e) => {
-                setTask(e.target.value);console.log("look");console.log(props.edit._id); set_id(props.edit._id)
+                setTask(e.target.value); set_id(props.edit._id)
               }}
 
             // onChange={(e) => set_id(props.edit.value._id)}
@@ -120,49 +121,49 @@ console.log(task, date)
   );
 };
 // const [editTodo, { data, loading }] = useMutation(SAVE_TODO, {
-  //   refetchQueries: [
-  //     GET_ME, // DocumentNode object parsed with gql
-  //     'me' // Query name
-  //   ],
-  // });
+//   refetchQueries: [
+//     GET_ME, // DocumentNode object parsed with gql
+//     'me' // Query name
+//   ],
+// });
 
-  // const handleEditSubmit = async (event) => {
-  //   event.preventDefault();
-  //   const token = Auth.loggedIn() ? Auth.getToken() : null;
+// const handleEditSubmit = async (event) => {
+//   event.preventDefault();
+//   const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-  //   if (!token) {
-  //     return false;
-  //   }
+//   if (!token) {
+//     return false;
+//   }
 
-  //   try {
-  //     const { data } = await editTodo({
-  //       variables: {
-  //         _id,
-  //         task,
-  //         date
-  //       },
-  //     });
-  //     set_id('');
-  //     setTask('');
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // }
-
-
-
-  // Add the new Note list item to the existing array of objects
-  // const newNote = [item, ...note];
-  // console.log(newNote);
-
-  // Call setNote to update state with our new set of Note list items
-  // setNote(newNote);
-  // };
+//   try {
+//     const { data } = await editTodo({
+//       variables: {
+//         _id,
+//         task,
+//         date
+//       },
+//     });
+//     set_id('');
+//     setTask('');
+//   } catch (err) {
+//     console.error(err);
+//   }
+// }
 
 
-  // const handleChange = (e) => {
-  //     setTask(e.target.value);
-  //   };
+
+// Add the new Note list item to the existing array of objects
+// const newNote = [item, ...note];
+// console.log(newNote);
+
+// Call setNote to update state with our new set of Note list items
+// setNote(newNote);
+// };
+
+
+// const handleChange = (e) => {
+//     setTask(e.target.value);
+//   };
 
 
 export default NoteForm
