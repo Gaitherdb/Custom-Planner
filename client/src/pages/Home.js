@@ -7,7 +7,7 @@ import NoteList from '../components/NoteList';
 import NoteForm from '../components/NoteForm';
 import { useQuery } from '@apollo/client';
 import { GET_ME } from '../utils/queries';
-import Auth from '../utils/auth';
+// import Auth from '../utils/auth';
 // import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
 
 

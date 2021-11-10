@@ -54,6 +54,7 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
+
     // remove a note from 'savedTodo'
     async deleteTodo(parent, { todoId }, context) {
       if (context.user) {

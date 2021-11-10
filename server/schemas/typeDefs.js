@@ -29,8 +29,9 @@ const typeDefs = gql`
   type Mutation {
     createUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    saveTodo(_id: ID, task: String!, date: String!): User
-    deleteTodo(todoId: String!): User
+    saveTodo(task: String!, date: String!): User
+    editTodo(_id: ID!, task: String!, date: String!): User
+    deleteTodo(_id: ID!): User
   }
 `;
 

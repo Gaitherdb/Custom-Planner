@@ -18,11 +18,11 @@ function NoteForm(props) {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    const token = Auth.loggedIn() ? Auth.getToken() : null;
+    // const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-    if (!token) {
-      return false;
-    }
+    // if (!token) {
+    //   return false;
+    // }
    
 console.log(task, date)
     try {
