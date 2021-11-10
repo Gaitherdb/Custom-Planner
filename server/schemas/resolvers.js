@@ -61,12 +61,12 @@ const resolvers = {
 
       if (context.user) {
         console.log("something")
+        console.log(task, date)
         // Find and update the matching class using the destructured args
         const updatedTodo = await Todo.findByIdAndUpdate(
           { _id: todosId },
-          { task, date },
-
-
+          { task },
+          { new: true}
         );
         console.log(updatedTodo)
         return updatedTodo;
