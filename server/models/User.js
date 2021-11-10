@@ -1,9 +1,6 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
-// import schema from todo.js
-const todoSchema = require('./Todo');
-
 const userSchema = new Schema(
   {
     username: {
@@ -21,8 +18,13 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    // set savedTodos to be an array of data that adheres to the todoSchema
-    savedTodos: [todoSchema],
+    // set savedTodos to be an array of data that adheres to the model/todoSchema
+    savedTodos: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Todo',
+      },
+    ],
   },
   // set this to use virtual below
   {

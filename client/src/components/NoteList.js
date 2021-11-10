@@ -11,11 +11,9 @@ const NoteList = (props) => {
   console.log("todos array notelist")
   console.log(todos)
   
-
   const [edit, setEdit] = useState({
-    id: null,
+    _id: null,
     value: '',
-    date: '',
   });
 
   // const editBucketItem = (itemId, newValue) => {
@@ -40,8 +38,8 @@ const NoteList = (props) => {
     setEdit({ id: null, value: '', date: '' });
   };
 
-  
-
+  console.log("id")
+  console.log(edit)
   if (edit._id) {
     console.log("notelist single id")
     console.log(edit._id)
@@ -64,7 +62,7 @@ const NoteList = (props) => {
             </h4>
             <div className="icons">
               
-              <p onClick={() => setEdit({ _id: todo._id, value: todo.task, date: todo.date })}> ✏️</p>
+              <p onClick={() => setEdit({ _id: todo._id, value: todo.task})}> ✏️</p>
               {/* <p onClick={() => props.removeBucketItem(item.id)}> 🗑️</p> */}
             </div>
           </div>

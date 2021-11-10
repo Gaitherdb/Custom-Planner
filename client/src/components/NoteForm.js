@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
-import { SAVE_TODO } from '../utils/mutations';
+import { EDIT_TODO, SAVE_TODO } from '../utils/mutations';
 import Auth from '../utils/auth';
 
 
@@ -13,16 +13,12 @@ function NoteForm(props) {
 
   const date = dayId;
   const [task, setTask] = useState('');
-  const [_id, set_id] = useState('');
+  const [todosId, set_id] = useState('');
   const [saveTodo, { error }] = useMutation(SAVE_TODO);
+  const [editTodo] = useMutation(EDIT_TODO);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    // const token = Auth.loggedIn() ? Auth.getToken() : null;
-
-    // if (!token) {
-    //   return false;
-    // }
    
 console.log(task, date)
     try {
@@ -34,6 +30,26 @@ console.log(task, date)
       });
       setTask('');
       props.refetch();
+      console.log("yahooo")
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleEditSubmit = async (event) => {
+    event.preventDefault();
+    console.log("editsubmit")
+    console.log(todosId, task, date)
+    try{
+      const { data } = await editTodo({
+        variables: {
+          todosId,
+          task,
+          date
+        },
+      });
+      setTask('');
+      set_id('');
     } catch (err) {
       console.error(err);
     }
@@ -76,7 +92,7 @@ console.log(task, date)
           </>
         ) : (<div>
           <h3>Update entry: {props.edit.value}</h3>
-          <form className="" onSubmit={handleFormSubmit}>
+          <form className="" onSubmit={handleEditSubmit}>
             <input
               type="text"
               placeholder={props.edit.value}

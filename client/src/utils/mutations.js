@@ -25,14 +25,21 @@ export const LOGIN_USER = gql`
 export const SAVE_TODO = gql`
   mutation saveTodo($task: String!, $date: String!) {
     saveTodo(task: $task, date: $date) {
-        _id
-        username
-        savedTodos{
-            _id
-           task
-           createdAt
-           date
-        }
+      _id
+      task
+      createdAt
+      date
+    }
+  }
+`;
+
+export const EDIT_TODO = gql`
+  mutation editTodo($todosId: ID!, $task: String!, $date: String!) {
+    editTodo(todosId: $todosId, task: $task, date: $date) {
+      _id
+      task
+      createdAt
+      date
     }
   }
 `;
@@ -40,15 +47,10 @@ export const SAVE_TODO = gql`
 export const DELETE_TODO = gql`
   mutation deleteTodo($_id: String!) {
     deleteTodo(_id: $_id) {
-        _id
-        username
-        savedTodos{
-          _id
-          task
-          createdAt
-          day
-           
-      }
+      _id
+      task
+      createdAt
+      date
     }
   }
 `;

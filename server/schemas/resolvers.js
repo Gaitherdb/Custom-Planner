@@ -1,4 +1,4 @@
-const { User } = require('../models');
+const { User, Todo } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
 
@@ -9,12 +9,12 @@ const resolvers = {
     },
     me: async (parent, args, context) => {
       if (context.user) {
-        return await User.findOne({ _id: context.user._id });
+        return await User.findOne({ _id: context.user._id }).populate('savedTodos');
       }
       throw new AuthenticationError('You need to be logged in!');
     },
   },
-  
+
   Mutation: {
 
     // create a user, sign a token, and send it back (to client/src/components/SignUpForm.js)
@@ -41,37 +41,39 @@ const resolvers = {
     },
     // save a note to a user's `savedTodos` field by adding it to the set (to prevent duplicates)
     // user comes from `req.user` created in the auth middleware function
-    async saveTodo(parent, {task, date}, context) {
-      
+    async saveTodo(parent, { task, date }, context) {
+        console.log("helooool")
       if (context.user) {
-        const updatedUser = await User.findOneAndUpdate(
+        const todo = await Todo.create({ task, date });
+
+        await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $addToSet: { savedTodos: { task, date}} },
+          { $addToSet: { savedTodos: todo._id } },
           { new: true, runValidators: true }
+
         );
-        return updatedUser;
+        return todo;
       }
       throw new AuthenticationError('You need to be logged in!');
     },
 
-    editTodo: async (parent, { _id, task }, context) => {
-      
-      if (context.user){
-      // Find and update the matching class using the destructured args
-      const updatedTodo = await User.findOneAndUpdate(
-        { _id: context.user._id },
-        { $addToSet: { savedTodos: {_id, task}} },
-        
-        // Return the newly updated object instead of the original
-        { new: true, runValidators: true  }
-      )
-      console.log(updatedTodo)
-      return updatedTodo;
+    async editTodo(parent, { todosId, task, date }, context) {
+
+      if (context.user) {
+        console.log("something")
+        // Find and update the matching class using the destructured args
+        const updatedTodo = await Todo.findByIdAndUpdate(
+          { _id: todosId },
+          { task, date },
+
+
+        );
+        console.log(updatedTodo)
+        return updatedTodo;
       }
       throw new AuthenticationError('You need to be logged in!');
     },
 
-    // remove a note from 'savedTodo'
     async deleteTodo(parent, { _id }, context) {
       if (context.user) {
         const updatedUser = await User.findOneAndUpdate(
