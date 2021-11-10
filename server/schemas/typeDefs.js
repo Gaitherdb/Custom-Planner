@@ -2,7 +2,7 @@ const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
   type User {
-    _id: ID!
+    _id: ID
     username: String!
     email: String!
     password: String!
@@ -10,10 +10,10 @@ const typeDefs = gql`
   }
 
   type Todo {
-    _id: ID!
+    _id: ID
     task: String!
     createdAt: String
-    date: String
+    date: String!
   }
 
   type Auth {
@@ -29,8 +29,9 @@ const typeDefs = gql`
   type Mutation {
     createUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    saveTodo(_id: String, task: String!, date: String!): User
-    deleteTodo(todoId: String!): User
+    saveTodo(task: String!, date: String!): Todo
+    editTodo(todosId: ID!, task: String!, date: String!): Todo
+    deleteTodo(todosId: ID!): Todo
   }
 `;
 

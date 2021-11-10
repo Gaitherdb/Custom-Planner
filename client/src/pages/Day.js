@@ -9,15 +9,18 @@ import 'react-calendar/dist/Calendar.css';
 import NoteForm from '../components/NoteForm';
 import { GET_ME } from '../utils/queries';
 
-const DayTodo = () => {
+const DayTodo = (props) => {
   const { dayId } = useParams();
-  const { loading, data } = useQuery(GET_ME);
+  const { loading, data, refetch } = useQuery(GET_ME);
   let todos = data?.me || [];
+  console.log("data")
   console.log(todos)
   const [value, setValue] = useState(new Date());
   const view = "month";
   const history = useHistory();
   const firstUpdate = useRef(true);
+
+
   if (todos.savedTodos) {
     if (!loading) {
       var thisPageTodo = todos.savedTodos.filter(todo => todo.date === dayId)
@@ -33,6 +36,7 @@ const DayTodo = () => {
     }
     history.push(`/day/${(value.toString().split(' ').slice(1, 4).join().replace(/,/g, ""))}`); // This is be executed when the state changes
   }, [value]);
+
 
   return (
     <div className="my-3">
@@ -61,6 +65,7 @@ const DayTodo = () => {
         />
         <NoteForm
           value={value.toString().split(' ').slice(1, 4).join().replace(/,/g, "")}
+         {...{refetch}}
         />
         {todos.savedTodos ? (
         <div className="col-12 col-md-8 mb-3">

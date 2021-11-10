@@ -7,13 +7,12 @@ import NoteList from '../components/NoteList';
 import NoteForm from '../components/NoteForm';
 import { useQuery } from '@apollo/client';
 import { GET_ME } from '../utils/queries';
-import Auth from '../utils/auth';
+// import Auth from '../utils/auth';
 // import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
 
 
-const Home = () => {
-  const { loading, data } = useQuery(GET_ME);
-  console.log(data)
+const Home = (props) => {
+  const { loading, data, refetch } = useQuery(GET_ME);
   const todos = data?.me || [];
   const [value, setValue] = useState(new Date());
   const view = "month";
@@ -38,8 +37,13 @@ const Home = () => {
     }
     history.push(`/day/${(value.toString().split(' ').slice(1, 4).join().replace(/,/g, ""))}`); // This is be executed when the state changes
   }, [value]);
-
-
+  console.log("props")
+  console.log(props)
+  if (props.refetch === true){
+    console.log("refetch")
+    refetch();
+    props.retech = false;
+  }
   return (
     <>
       {/* <Jumbotron fluid className='text-light bg-dark'>
@@ -58,6 +62,7 @@ const Home = () => {
 
         <NoteForm
           value={value.toString().split(' ').slice(1, 4).join().replace(/,/g, "")}
+          {...{refetch}}
         />
         {todos.savedTodos ? (
         <div className="col-12 col-md-8 mb-3">

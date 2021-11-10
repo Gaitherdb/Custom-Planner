@@ -2,19 +2,18 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import NoteForm from '../components/NoteForm';
 
-const NoteList = ({ todos }) => {
-  //if we want to include date in the future
+const NoteList = (props) => {
+  const todos = props.todos
   let { dayId } = useParams();
   if (!dayId) {
     dayId = new Date().toString().split(' ').slice(1, 4).join().replace(/,/g, "");
   }
-  console.log("todos")
-  console.log(todos._id)
-
+  console.log("todos array notelist")
+  console.log(todos)
+  
   const [edit, setEdit] = useState({
-    id: null,
+    _id: null,
     value: '',
-    date: '',
   });
 
   // const editBucketItem = (itemId, newValue) => {
@@ -39,8 +38,11 @@ const NoteList = ({ todos }) => {
     setEdit({ id: null, value: '', date: '' });
   };
 
-
-  if (edit.id) {
+  console.log("id")
+  console.log(edit)
+  if (edit._id) {
+    console.log("notelist single id")
+    console.log(edit._id)
     return <NoteForm edit={edit}  />;
   }
   // onSubmit={submitUpdate}
@@ -59,8 +61,8 @@ const NoteList = ({ todos }) => {
               {todo.task}
             </h4>
             <div className="icons">
-              {console.log(todo)}
-              <p onClick={() => setEdit({ id: todo._id, value: todo.task, date: todo.date })}> ✏️</p>
+              
+              <p onClick={() => setEdit({ _id: todo._id, value: todo.task})}> ✏️</p>
               {/* <p onClick={() => props.removeBucketItem(item.id)}> 🗑️</p> */}
             </div>
           </div>
