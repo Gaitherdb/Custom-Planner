@@ -49,18 +49,34 @@ const resolvers = {
           { $addToSet: { savedTodos: { task, date}} },
           { new: true, runValidators: true }
         );
-          console.log(updatedUser)
         return updatedUser;
       }
       throw new AuthenticationError('You need to be logged in!');
     },
 
+    editTodo: async (parent, { _id, task }, context) => {
+      
+      if (context.user){
+      // Find and update the matching class using the destructured args
+      const updatedTodo = await User.findOneAndUpdate(
+        { _id: context.user._id },
+        { $addToSet: { savedTodos: {_id, task}} },
+        
+        // Return the newly updated object instead of the original
+        { new: true, runValidators: true  }
+      )
+      console.log(updatedTodo)
+      return updatedTodo;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+
     // remove a note from 'savedTodo'
-    async deleteTodo(parent, { todoId }, context) {
+    async deleteTodo(parent, { _id }, context) {
       if (context.user) {
         const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { savedTodos: { todoId } } },
+          { $pull: { savedTodos: { _id } } },
           { new: true, runValidators: true }
         );
 
