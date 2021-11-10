@@ -18,16 +18,15 @@ const Home = (props) => {
   const view = "month";
   const history = useHistory();
   const firstUpdate = useRef(true);
+  var renderNoteList;
 
   if (todos.savedTodos) {
-    console.log("todos")
-    console.log(todos.savedTodos)
+    renderNoteList = true;
     const todayDate = new Date().toString().split(' ').slice(1, 4).join().replace(/,/g, "");
     if (!loading) {
       var thisPageTodo = todos.savedTodos.filter(todo => todo.date === todayDate)
     }
-    console.log("thispagetodo")
-    console.log(thisPageTodo)
+   
   }
 
   useEffect(() => {
@@ -37,13 +36,13 @@ const Home = (props) => {
     }
     history.push(`/day/${(value.toString().split(' ').slice(1, 4).join().replace(/,/g, ""))}`); // This is be executed when the state changes
   }, [value]);
-  console.log("props")
-  console.log(props)
+ 
   if (props.refetch === true){
     console.log("refetch")
     refetch();
     props.retech = false;
   }
+  
   return (
     <>
       {/* <Jumbotron fluid className='text-light bg-dark'>
@@ -64,7 +63,8 @@ const Home = (props) => {
           value={value.toString().split(' ').slice(1, 4).join().replace(/,/g, "")}
           {...{refetch}}
         />
-        {todos.savedTodos ? (
+        {console.log("render", renderNoteList)}
+        {renderNoteList ? (
         <div className="col-12 col-md-8 mb-3">
           {loading ? (
             <div>Loading...</div>
@@ -72,10 +72,11 @@ const Home = (props) => {
             <NoteList
               todos={thisPageTodo}
               value={value.toString().split(' ').slice(1, 4).join().replace(/,/g, "")}
+              {...{refetch}}
             />
           )}
         </div>
-        ) : (console.log("hi"))}
+        ) : (<div>Add a note?</div>)}
 
       </Container>
     </>

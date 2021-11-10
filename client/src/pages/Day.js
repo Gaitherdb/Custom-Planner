@@ -13,20 +13,23 @@ const DayTodo = (props) => {
   const { dayId } = useParams();
   const { loading, data, refetch } = useQuery(GET_ME);
   let todos = data?.me || [];
-  console.log("data")
-  console.log(todos)
+  
   const [value, setValue] = useState(new Date());
   const view = "month";
   const history = useHistory();
   const firstUpdate = useRef(true);
+  var renderNoteList;
+
+  
 
 
   if (todos.savedTodos) {
+    
     if (!loading) {
       var thisPageTodo = todos.savedTodos.filter(todo => todo.date === dayId)
+      //if they have ever posted before, they can see the notes section. We link part of the prop in the note section, and if they dont have todos it'll break
+      renderNoteList = true;
     }
-    console.log("thispagetodo")
-    console.log(thisPageTodo)
   }
   //for calender
   useEffect(() => {
@@ -37,7 +40,7 @@ const DayTodo = (props) => {
     history.push(`/day/${(value.toString().split(' ').slice(1, 4).join().replace(/,/g, ""))}`); // This is be executed when the state changes
   }, [value]);
 
-
+  console.log("notelistrenderr",renderNoteList)
   return (
     <div className="my-3">
       <div className="bg-light py-4">
@@ -67,7 +70,7 @@ const DayTodo = (props) => {
           value={value.toString().split(' ').slice(1, 4).join().replace(/,/g, "")}
          {...{refetch}}
         />
-        {todos.savedTodos ? (
+        {renderNoteList ? (
         <div className="col-12 col-md-8 mb-3">
           {loading ? (
             <div>Loading...</div>
@@ -75,10 +78,11 @@ const DayTodo = (props) => {
             <NoteList
               todos={thisPageTodo}
               value={value.toString().split(' ').slice(1, 4).join().replace(/,/g, "")}
+              {...{refetch}}
             />
           )}
         </div>
-        ) : (console.log("i hate you"))}
+        ) : (<div>Add a note?</div>)}
       </Container>
 
     </div>
