@@ -87,15 +87,11 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
 
-    async deleteTodo(parent, { _id }, context) {
+    async deleteTodo(parent, { todosId }, context) {
+      console.log("Hhi")
       if (context.user) {
-        const updatedUser = await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $pull: { savedTodos: { _id } } },
-          { new: true, runValidators: true }
-        );
-
-        return updatedUser;
+        const deletedTodo = await Todo.findOneAndDelete({ _id: todosId});
+        return deletedTodo;
       }
       throw new AuthenticationError('You need to be logged in!');
     }

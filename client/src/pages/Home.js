@@ -62,7 +62,6 @@ const Home = (props) => {
           value={value.toString().split(' ').slice(1, 4).join().replace(/,/g, "")}
           {...{refetch}}
         />
-        {console.log("render", renderNoteList)}
         {renderNoteList ? (
         <div className="col-12 col-md-8 mb-3">
           {loading ? (

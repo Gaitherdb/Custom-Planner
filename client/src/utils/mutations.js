@@ -58,7 +58,7 @@ export const EDIT_ISCOMPLETE = gql`
 `;
 
 export const DELETE_TODO = gql`
-  mutation deleteTodo($todosId: String!) {
+  mutation deleteTodo($todosId: ID!) {
     deleteTodo(todosId: $todosId) {
       _id
       task

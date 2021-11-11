@@ -31,7 +31,7 @@ const NoteList = (props) => {
     }
 
     let todosId = id;
-
+console.log(todosId)
     try {
       const {data} = await editIsComplete({
         variables: {
@@ -52,15 +52,16 @@ const NoteList = (props) => {
   }
 
   const handleDelete = async (id) => {
-    let singleTodo = todos.filter(todo => todo._id === id);
-    let todosId = id;
-
+    let todosId = id.id;
+    console.log("HEEEEEEEYYYYAAA")
+    console.log(todosId)
     try {
       const {data} = await deleteTodo({
         variables: {
           todosId
         },
       });
+      window.location.reload();
       console.log(data);
     } catch (err) {
       console.error(err);
@@ -87,7 +88,7 @@ const NoteList = (props) => {
             <div className="icons">
 
               <p onClick={() => setEdit({ _id: todo._id, value: todo.task })}> <span role="img" aria-label="edit">✏️</span></p>
-              <p onClick={() => handleDelete({id: todo.id})}> 🗑️</p>
+              <p onClick={() => handleDelete({id: todo._id})}> 🗑️</p>
             </div>
           </div>
         ))}
