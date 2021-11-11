@@ -61,7 +61,11 @@ h6 {
   background-color: rgb(166, 138, 100)
 }
 
-/* :hover {
-    color: rgb(101, 109, 74);
+ button {
+    background-color: rgb(65, 72, 51);
+    color: rgb(65, 72, 51);
 		cursor: pointer;
-  } */
+    /* color: rgb(237, 224, 212); */
+    /* border: rgb(237, 224, 212); */
+    
+  }

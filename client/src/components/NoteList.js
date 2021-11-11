@@ -32,7 +32,7 @@ const NoteList = (props) => {
       {todos &&
         todos.map((todo) => (
           <div key={todo._id} className="card mb-3 dark-color">
-            <h4 className="card-header bg-primary text-light p-2 m-0">
+            <h4 className="card-header text-light p-2 m-0">
               {todo.task}
             </h4>
             <div className="icons">
