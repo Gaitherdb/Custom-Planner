@@ -3,7 +3,6 @@ import { Link, useParams } from 'react-router-dom';
 import { useMutation, useQuery } from '@apollo/client';
 import { EDIT_TODO, SAVE_TODO } from '../utils/mutations';
 import Auth from '../utils/auth';
-import { CustomButtonStyle  } from './CustomButtonStyle'
 
 
 function NoteForm(props) {
