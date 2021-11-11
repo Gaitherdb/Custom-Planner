@@ -12,6 +12,7 @@ export const GET_ME = gql`
         task
         createdAt
         date
+        isComplete
       }
     }
   }
