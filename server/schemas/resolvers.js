@@ -42,7 +42,7 @@ const resolvers = {
     // save a note to a user's `savedTodos` field by adding it to the set (to prevent duplicates)
     // user comes from `req.user` created in the auth middleware function
     async saveTodo(parent, { task, date }, context) {
-        console.log("helooool")
+        
       if (context.user) {
         const todo = await Todo.create({ task, date });
 
@@ -60,15 +60,13 @@ const resolvers = {
     async editTodo(parent, { todosId, task, date }, context) {
 
       if (context.user) {
-        console.log("something")
-        console.log(task, date)
         // Find and update the matching class using the destructured args
         const updatedTodo = await Todo.findByIdAndUpdate(
           { _id: todosId },
           { task },
           { new: true}
         );
-        console.log(updatedTodo)
+        
         return updatedTodo;
       }
       throw new AuthenticationError('You need to be logged in!');
@@ -77,15 +75,13 @@ const resolvers = {
     async editIsComplete(parent, { todosId, isComplete}, context) {
 
       if (context.user) {
-        console.log("heyyoo")
-        console.log(todosId, isComplete)
         // Find and update the matching class using the destructured args
         const updatedTodo = await Todo.findByIdAndUpdate(
           { _id: todosId },
           { isComplete },
           { new: true}
         );
-        console.log(updatedTodo)
+    
         return updatedTodo;
       }
       throw new AuthenticationError('You need to be logged in!');
