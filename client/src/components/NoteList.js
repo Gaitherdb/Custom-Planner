@@ -80,8 +80,8 @@ const NoteList = (props) => {
         todos.map((todo) => (
           <div className={
             todo.isComplete
-              ? `dark-color d-flex complete`
-              : `dark-color d-flex `
+              ? `dark-color d-flex mb-1 complete`
+              : `dark-color d-flex mb-1`
           } key={todo._id} >
             <h4 key={todo._id} onClick={() => completeTodo(todo._id)} className=" text-light mr-auto p-2 ">
               {todo.task}
