@@ -74,7 +74,7 @@ console.log(todosId)
 
   return (
     <div>
-      <h3>What is on your note list?</h3>
+      <h3>What is on your plate for today?</h3>
       {todos &&
         todos.map((todo) => (
           <div className={
