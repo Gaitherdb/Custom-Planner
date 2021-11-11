@@ -74,7 +74,8 @@ console.log(todosId)
 
   return (
     <div>
-      <h3>What is on your plate for today?</h3>
+      <h3  className="card-header text-dark p-2 m-0">
+        What is on your plate for today?</h3>
       {todos &&
         todos.map((todo) => (
           <div className={
