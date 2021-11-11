@@ -46,7 +46,7 @@ const resolvers = {
       if (context.user) {
         const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $addToSet: { savedTodos: {task, date}} },
+          { $addToSet: { savedTodos: { task, date}} },
           { new: true, runValidators: true }
         );
           console.log(updatedUser)

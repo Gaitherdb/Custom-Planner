@@ -31,16 +31,20 @@ const NoteList = ({ todos }) => {
   // };
 
   const submitUpdate = (value) => {
+    console.log("value")
+    console.log(value)
     if (value)
+    
     // editBucketItem(edit.id, value);
     setEdit({ id: null, value: '', date: '' });
   };
 
 
   if (edit.id) {
-    return <NoteForm edit={edit} onSubmit={submitUpdate} />;
+    return <NoteForm edit={edit}  />;
   }
-  
+  // onSubmit={submitUpdate}
+
   if (!todos) {
     return <h3>No notes yet</h3>;
   }
