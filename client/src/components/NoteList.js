@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import NoteForm from '../components/NoteForm';
 import { useMutation } from '@apollo/client';
-import { EDIT_ISCOMPLETE } from '../utils/mutations';
+import { EDIT_ISCOMPLETE, DELETE_TODO } from '../utils/mutations';
 
 const NoteList = (props) => {
   var todos = props.todos
@@ -17,6 +17,7 @@ const NoteList = (props) => {
   });
 
   const [editIsComplete] = useMutation(EDIT_ISCOMPLETE);
+  const [deleteTodo] = useMutation(DELETE_TODO);
 
   // Function to mark todo item as complete
   const completeTodo = async (id) => {
@@ -30,14 +31,15 @@ const NoteList = (props) => {
     }
 
     let todosId = id;
-
+console.log(todosId)
     try {
-      const { data } = await editIsComplete({
+      const {data} = await editIsComplete({
         variables: {
           todosId,
           isComplete,
         },
       });
+      console.log(data);
     } catch (err) {
       console.error(err);
     }
@@ -48,6 +50,23 @@ const NoteList = (props) => {
     //send this single todo item info to the noteform
     return <NoteForm edit={edit} />;
   }
+
+  const handleDelete = async (id) => {
+    let todosId = id.id;
+    console.log("HEEEEEEEYYYYAAA")
+    console.log(todosId)
+    try {
+      const {data} = await deleteTodo({
+        variables: {
+          todosId
+        },
+      });
+      window.location.reload();
+      console.log(data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   if (!todos) {
     return <h3>No notes yet</h3>;
@@ -68,8 +87,8 @@ const NoteList = (props) => {
             </h4>
             <div className="icons">
 
-              <p onClick={() => setEdit({ _id: todo._id, value: todo.task })}> ✏️</p>
-              {/* <p onClick={() => props.removeBucketItem(item.id)}> 🗑️</p> */}
+              <p onClick={() => setEdit({ _id: todo._id, value: todo.task })}> <span role="img" aria-label="edit">✏️</span></p>
+              <p onClick={() => handleDelete({id: todo._id})}> 🗑️</p>
             </div>
           </div>
         ))}
