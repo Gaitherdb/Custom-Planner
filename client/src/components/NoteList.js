@@ -5,7 +5,7 @@ import { useMutation } from '@apollo/client';
 import { EDIT_ISCOMPLETE, DELETE_TODO } from '../utils/mutations';
 
 const NoteList = (props) => {
-  var todos = props.todos
+  var todos = props.todos;
   let { dayId } = useParams();
   if (!dayId) {
     dayId = new Date().toString().split(' ').slice(1, 4).join().replace(/,/g, "");
@@ -18,7 +18,7 @@ const NoteList = (props) => {
 
   const [editIsComplete] = useMutation(EDIT_ISCOMPLETE);
   const [deleteTodo] = useMutation(DELETE_TODO);
-
+  
   // Function to mark todo item as complete
   const completeTodo = async (id) => {
     let isComplete;
