@@ -109,8 +109,7 @@ function NoteForm(props) {
         )
       ) : (
         <p>
-          You need to be logged in to share your thoughts. Please{' '}
-          <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
+          You need to be logged in to add to your todo list.
         </p>
       )}
     </div>
