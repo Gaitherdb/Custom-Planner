@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
+import {Container} from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
@@ -9,7 +9,7 @@ import { useQuery } from '@apollo/client';
 import { GET_ME } from '../utils/queries';
 // import Auth from '../utils/auth';
 // import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
-
+// Jumbotron, Container, Col, Form, Button, Card, CardColumns 
 
 const Home = (props) => {
   const { loading, data, refetch } = useQuery(GET_ME);
@@ -26,8 +26,7 @@ const Home = (props) => {
     if (!loading) {
       var thisPageTodo = todos.savedTodos.filter(todo => todo.date === todayDate)
     }
-   
-  }
+  };
 
   useEffect(() => {
     if (firstUpdate.current) {
@@ -63,7 +62,6 @@ const Home = (props) => {
           value={value.toString().split(' ').slice(1, 4).join().replace(/,/g, "")}
           {...{refetch}}
         />
-        {console.log("render", renderNoteList)}
         {renderNoteList ? (
         <div className="col-12 col-md-8 mb-3">
           {loading ? (
