@@ -43,7 +43,7 @@ const DayTodo = (props) => {
   
   return (
     <div className="my-3">
-      <div className="bg-light py-4">
+      <div className="py-4">
         <blockquote
           className="p-4"
           style={{
