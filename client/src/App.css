@@ -2,3 +2,34 @@
     text-decoration: line-through;
     opacity: 0.4;
   }
+
+
+  .light-color {
+    background-color: rgb(101, 109, 74)
+  }
+  
+  .dark-color {
+    background-color: rgb(65, 72, 51);
+  }
+  
+  .background-color {
+    background-color: rgb(237, 224, 212)
+  }
+  
+  .accent-color {
+    background-color: rgb(127, 85, 57)
+  }
+  
+  .accent-color-light {
+    background-color: rgb(166, 138, 100)
+  }
+  
+   button {
+      background-color: rgb(65, 72, 51);
+      color: rgb(65, 72, 51);
+      cursor: pointer;
+      /* color: rgb(237, 224, 212); */
+      /* border: rgb(237, 224, 212); */
+      
+    }
+  
