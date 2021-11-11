@@ -16,6 +16,10 @@ const todoSchema = new Schema({
     type: String,
     required: true
   },
+  isComplete: {
+    type: Boolean,
+    default: false
+  }
 });
 const Todo = model('Todo', todoSchema);
 module.exports = Todo;

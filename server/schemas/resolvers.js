@@ -74,6 +74,23 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
 
+    async editIsComplete(parent, { todosId, isComplete}, context) {
+
+      if (context.user) {
+        console.log("heyyoo")
+        console.log(todosId, isComplete)
+        // Find and update the matching class using the destructured args
+        const updatedTodo = await Todo.findByIdAndUpdate(
+          { _id: todosId },
+          { isComplete },
+          { new: true}
+        );
+        console.log(updatedTodo)
+        return updatedTodo;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+
     async deleteTodo(parent, { _id }, context) {
       if (context.user) {
         const updatedUser = await User.findOneAndUpdate(

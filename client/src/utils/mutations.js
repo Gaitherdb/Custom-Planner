@@ -29,6 +29,7 @@ export const SAVE_TODO = gql`
       task
       createdAt
       date
+      isComplete
     }
   }
 `;
@@ -40,6 +41,18 @@ export const EDIT_TODO = gql`
       task
       createdAt
       date
+      isComplete
+    }
+  }
+`;
+export const EDIT_ISCOMPLETE = gql`
+  mutation editIsComplete($todosId: ID!, $isComplete: Boolean) {
+    editIsComplete(todosId: $todosId, isComplete: $isComplete) {
+      _id
+      task
+      createdAt
+      date
+      isComplete
     }
   }
 `;
@@ -55,18 +68,3 @@ export const DELETE_TODO = gql`
   }
 `;
 
-export const UPDATE_TODO = gql`
-  mutation updateTodo($_id: String!, $task: String!) {
-    updateTodo(_id: $_id, task: $task) {
-        _id
-        username
-        savedTodos{
-          _id
-          task
-          createdAt
-          day
-           
-      }
-    }
-  }
-`;

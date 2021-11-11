@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { useMutation, useQuery } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import { EDIT_TODO, SAVE_TODO } from '../utils/mutations';
 import Auth from '../utils/auth';
 import { CustomButtonStyle  } from './CustomButtonStyle'
@@ -18,7 +18,6 @@ function NoteForm(props) {
   const [saveTodo, { error }] = useMutation(SAVE_TODO);
   const [editTodo] = useMutation(EDIT_TODO);
   
-
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
@@ -45,7 +44,7 @@ function NoteForm(props) {
         variables: {
           todosId,
           task,
-          date
+          date,
         },
       });
       setTask('');
@@ -100,13 +99,9 @@ function NoteForm(props) {
               placeholder={props.edit.value}
               value={task}
               name="text"
-              // className="todo-input"
               onChange={(e) => {
                 setTask(e.target.value); set_id(props.edit._id)
               }}
-
-            // onChange={(e) => set_id(props.edit.value._id)}
-
             ></input>
             <button className="bucket-button">Update</button>
           </form>
@@ -121,50 +116,5 @@ function NoteForm(props) {
     </div>
   );
 };
-// const [editTodo, { data, loading }] = useMutation(SAVE_TODO, {
-//   refetchQueries: [
-//     GET_ME, // DocumentNode object parsed with gql
-//     'me' // Query name
-//   ],
-// });
-
-// const handleEditSubmit = async (event) => {
-//   event.preventDefault();
-//   const token = Auth.loggedIn() ? Auth.getToken() : null;
-
-//   if (!token) {
-//     return false;
-//   }
-
-//   try {
-//     const { data } = await editTodo({
-//       variables: {
-//         _id,
-//         task,
-//         date
-//       },
-//     });
-//     set_id('');
-//     setTask('');
-//   } catch (err) {
-//     console.error(err);
-//   }
-// }
-
-
-
-// Add the new Note list item to the existing array of objects
-// const newNote = [item, ...note];
-// console.log(newNote);
-
-// Call setNote to update state with our new set of Note list items
-// setNote(newNote);
-// };
-
-
-// const handleChange = (e) => {
-//     setTask(e.target.value);
-//   };
-
 
 export default NoteForm
