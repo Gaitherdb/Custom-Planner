@@ -28,7 +28,7 @@ const NoteList = (props) => {
     } else {
       isComplete = false;
     }
-    
+
     let todosId = id;
 
     try {
@@ -63,7 +63,7 @@ const NoteList = (props) => {
               ? `card mb-3 dark-color complete`
               : `card mb-3 dark-color`
           } key={todo._id} >
-            <h4 key={todo._id} onClick={() => completeTodo(todo._id)} className="card-header bg-primary text-light p-2 m-0">
+            <h4 key={todo._id} onClick={() => completeTodo(todo._id)} className="card-header text-light p-2 m-0">
               {todo.task}
             </h4>
             <div className="icons">
