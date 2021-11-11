@@ -41,7 +41,7 @@ function NoteForm(props) {
     event.preventDefault();
 
     try {
-      const [data] = await editTodo({
+      const {data} = await editTodo({
         variables: {
           todosId,
           task,
