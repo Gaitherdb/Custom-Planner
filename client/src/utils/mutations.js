@@ -23,30 +23,49 @@ export const LOGIN_USER = gql`
   }
 `;
 export const SAVE_TODO = gql`
-  mutation saveTodo($_id: String, $task: String!, $date: String!) {
-    saveTodo(_id: $_id, task: $task, date: $date) {
-        _id
-        username
-        savedTodos{
-            _id
-           task
-           createdAt
-           date
-        }
+  mutation saveTodo($task: String!, $date: String!) {
+    saveTodo(task: $task, date: $date) {
+      _id
+      task
+      createdAt
+      date
+    }
+  }
+`;
+
+export const EDIT_TODO = gql`
+  mutation editTodo($todosId: ID!, $task: String!, $date: String!) {
+    editTodo(todosId: $todosId, task: $task, date: $date) {
+      _id
+      task
+      createdAt
+      date
     }
   }
 `;
 
 export const DELETE_TODO = gql`
-  mutation deleteTodo($todoId: String!) {
-    deleteTodo(todoId: $todoId) {
+  mutation deleteTodo($_id: String!) {
+    deleteTodo(_id: $_id) {
+      _id
+      task
+      createdAt
+      date
+    }
+  }
+`;
+
+export const UPDATE_TODO = gql`
+  mutation updateTodo($_id: String!, $task: String!) {
+    updateTodo(_id: $_id, task: $task) {
         _id
         username
         savedTodos{
+          _id
           task
+          createdAt
           day
-          month
-          todoId  
+           
       }
     }
   }

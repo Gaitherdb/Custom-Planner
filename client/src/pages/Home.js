@@ -11,24 +11,22 @@ import { GET_ME } from '../utils/queries';
 // import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
 
 
-const Home = () => {
-  const { loading, data } = useQuery(GET_ME);
-  console.log(data)
+const Home = (props) => {
+  const { loading, data, refetch } = useQuery(GET_ME);
   const todos = data?.me || [];
-  const [value, onChange] = useState(new Date());
+  const [value, setValue] = useState(new Date());
   const view = "month";
   const history = useHistory();
   const firstUpdate = useRef(true);
+  var renderNoteList;
 
   if (todos.savedTodos) {
-    console.log("todos")
-    console.log(todos.savedTodos)
+    renderNoteList = true;
     const todayDate = new Date().toString().split(' ').slice(1, 4).join().replace(/,/g, "");
     if (!loading) {
       var thisPageTodo = todos.savedTodos.filter(todo => todo.date === todayDate)
     }
-    console.log("thispagetodo")
-    console.log(thisPageTodo)
+   
   }
 
   useEffect(() => {
@@ -38,11 +36,13 @@ const Home = () => {
     }
     history.push(`/day/${(value.toString().split(' ').slice(1, 4).join().replace(/,/g, ""))}`); // This is be executed when the state changes
   }, [value]);
-
-  // if (loading) {
-  //   return <h2>LOADING...</h2>;
-  // }
-
+ 
+  if (props.refetch === true){
+    console.log("refetch")
+    refetch();
+    props.retech = false;
+  }
+  
   return (
     <>
       {/* <Jumbotron fluid className='text-light bg-dark'>
@@ -54,15 +54,17 @@ const Home = () => {
       <Container>
         <Calendar
           showNavigation={true}
-          onChange={onChange}
+          onChange={setValue}
           value={value}
           view={view}
         />
 
         <NoteForm
           value={value.toString().split(' ').slice(1, 4).join().replace(/,/g, "")}
+          {...{refetch}}
         />
-
+        {console.log("render", renderNoteList)}
+        {renderNoteList ? (
         <div className="col-12 col-md-8 mb-3">
           {loading ? (
             <div>Loading...</div>
@@ -70,9 +72,11 @@ const Home = () => {
             <NoteList
               todos={thisPageTodo}
               value={value.toString().split(' ').slice(1, 4).join().replace(/,/g, "")}
+              {...{refetch}}
             />
           )}
         </div>
+        ) : (<div>Add a note?</div>)}
 
       </Container>
     </>

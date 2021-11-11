@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { useMutation } from '@apollo/client';
-import { useQuery } from '@apollo/client';
-import { GET_ME } from '../utils/queries';
-import { SAVE_TODO } from '../utils/mutations';
-// import { GET_ME } from '../utils/queries';
+import { useMutation, useQuery } from '@apollo/client';
+import { EDIT_TODO, SAVE_TODO } from '../utils/mutations';
 import Auth from '../utils/auth';
 import { CustomButtonStyle  } from './CustomButtonStyle'
 
@@ -17,16 +14,13 @@ function NoteForm(props) {
 
   const date = dayId;
   const [task, setTask] = useState('');
-  const [_id, set_id] = useState('');
+  const [todosId, set_id] = useState('');
   const [saveTodo, { error }] = useMutation(SAVE_TODO);
+  const [editTodo] = useMutation(EDIT_TODO);
+  
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    const token = Auth.loggedIn() ? Auth.getToken() : null;
-
-    if (!token) {
-      return false;
-    }
 
     try {
       const { data } = await saveTodo({
@@ -36,99 +30,33 @@ function NoteForm(props) {
         },
       });
       setTask('');
+      //calls for the query on either the homepage or daypage to run again
+      props.refetch();
     } catch (err) {
       console.error(err);
     }
   };
 
-  const [editTodo, { data, loading }] = useMutation(SAVE_TODO, {
-    refetchQueries: [
-      GET_ME, // DocumentNode object parsed with gql
-      'me' // Query name
-    ],
-  });
-
   const handleEditSubmit = async (event) => {
     event.preventDefault();
-    const token = Auth.loggedIn() ? Auth.getToken() : null;
-
-    if (!token) {
-      return false;
-    }
 
     try {
       const { data } = await editTodo({
         variables: {
-          _id,
+          todosId,
           task,
           date
         },
       });
-      set_id('');
       setTask('');
+      set_id('');
+
+      window.location.reload();
     } catch (err) {
       console.error(err);
     }
-  }
+  };
 
-
-
-  // Add the new Note list item to the existing array of objects
-  // const newNote = [item, ...note];
-  // console.log(newNote);
-
-  // Call setNote to update state with our new set of Note list items
-  // setNote(newNote);
-  // };
-
-
-    // const handleChange = (e) => {
-    //     setTask(e.target.value);
-    //   };
-    return (
-        <div>
-          <h3>Todo List</h3>
-    
-          {Auth.loggedIn() ? (
-            !props.edit ? (
-            <>
-             
-              <form
-                className="flex-row justify-center justify-space-between-md align-center"
-                onSubmit={handleFormSubmit}
-              >
-                <div className="col-12 col-lg-9">
-                  <textarea
-                    name="notes"
-                    placeholder="Add to your todo list..."
-                    value={task}
-                    className="form-input w-100"
-                    style={{ lineHeight: '2', resize: 'vertical' }}
-                    onChange={(e) => setTask(e.target.value)}
-                  ></textarea>
-                </div>
-    
-                <div className="col-12 col-lg-3">
-                  <button component={CustomButtonStyle} >
-                    {/* Add Todo Item */}
-                  </button>
-                </div>
-                {error && (
-                  <div className="col-12 my-3 bg-danger text-white p-3">
-                    {error.message}
-                  </div>
-                )}
-              </form>
-            </>
-            ) : ( <div>
-              <h3>Update entry: {props.edit.value}</h3>
-              <form className="" onSubmit={handleFormSubmit}>
-                <input
-                  type="text"
-                  placeholder={props.edit.value}
-  // const handleChange = (e) => {
-  //     setTask(e.target.value);
-  //   };
   return (
     <div>
       <h3>Todo List</h3>
@@ -193,37 +121,50 @@ function NoteForm(props) {
     </div>
   );
 };
-// return !props.edit ? (
-//     <div>
-//         <form className="note-form" onSubmit={props.onSubmit()}>
-//         <input
-//       type="text"
-//       placeholder="Add to your notes"
-//       value={inputTask}
-//       name="text"
-//       className="bucket-input"
-//       onChange={}
-//     ></input>
+// const [editTodo, { data, loading }] = useMutation(SAVE_TODO, {
+//   refetchQueries: [
+//     GET_ME, // DocumentNode object parsed with gql
+//     'me' // Query name
+//   ],
+// });
 
-//         <button className="bucket-button">Add bucket list item</button>
-//     </form>
-//     </div>
-//     ) : (
-//         <div>
-//             <h3>Update entry: {props.edit.value}</h3>
-//   <form className="bucket-form" onSubmit={props.onSubmit()}>
-//     <input
-//       type="text"
-//       placeholder={props.edit.value}
-//       value={inputTask}
-//       name="text"
-//       className="bucket-input"
-//       onChange={handleChange}
-//     ></input>
-//     <button className="bucket-button">Update</button>
-//     </form>
-//         </div>
-//     );
+// const handleEditSubmit = async (event) => {
+//   event.preventDefault();
+//   const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+//   if (!token) {
+//     return false;
+//   }
+
+//   try {
+//     const { data } = await editTodo({
+//       variables: {
+//         _id,
+//         task,
+//         date
+//       },
+//     });
+//     set_id('');
+//     setTask('');
+//   } catch (err) {
+//     console.error(err);
+//   }
 // }
 
-export default NoteForm;
+
+
+// Add the new Note list item to the existing array of objects
+// const newNote = [item, ...note];
+// console.log(newNote);
+
+// Call setNote to update state with our new set of Note list items
+// setNote(newNote);
+// };
+
+
+// const handleChange = (e) => {
+//     setTask(e.target.value);
+//   };
+
+
+export default NoteForm
