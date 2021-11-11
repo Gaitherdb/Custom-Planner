@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import Calendar from 'react-calendar';
 import { useHistory } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
@@ -8,7 +8,7 @@ import NoteList from '../components/NoteList'
 import 'react-calendar/dist/Calendar.css';
 import NoteForm from '../components/NoteForm';
 import { GET_ME } from '../utils/queries';
-
+// Jumbotron, Container, Col, Form, Button, Card, CardColumns 
 const DayTodo = (props) => {
   const { dayId } = useParams();
   const { loading, data, refetch } = useQuery(GET_ME);
@@ -40,7 +40,7 @@ const DayTodo = (props) => {
     history.push(`/day/${(value.toString().split(' ').slice(1, 4).join().replace(/,/g, ""))}`); // This is be executed when the state changes
   }, [value]);
 
-  console.log("notelistrenderr",renderNoteList)
+  
   return (
     <div className="my-3">
       <div className="bg-light py-4">

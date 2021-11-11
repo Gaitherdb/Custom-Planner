@@ -7,6 +7,7 @@ import Auth from '../utils/auth';
 
 function NoteForm(props) {
   let { dayId } = useParams();
+
   if (!dayId) {
     dayId = new Date().toString().split(' ').slice(1, 4).join().replace(/,/g, "");
   }
@@ -28,6 +29,7 @@ function NoteForm(props) {
         },
       });
       setTask('');
+      console.log(data);
       //calls for the query on either the homepage or daypage to run again
       props.refetch();
     } catch (err) {
@@ -39,7 +41,7 @@ function NoteForm(props) {
     event.preventDefault();
 
     try {
-      const { data } = await editTodo({
+      const [data] = await editTodo({
         variables: {
           todosId,
           task,
@@ -48,7 +50,7 @@ function NoteForm(props) {
       });
       setTask('');
       set_id('');
-
+      console.log(data);
       window.location.reload();
     } catch (err) {
       console.error(err);
@@ -62,7 +64,6 @@ function NoteForm(props) {
       {Auth.loggedIn() ? (
         !props.edit ? (
           <>
-
             <form
               className="flex-row justify-center justify-space-between-md align-center"
               onSubmit={handleFormSubmit}

@@ -10,7 +10,7 @@ const typeDefs = gql`
   }
 
   type Todo {
-    _id: ID
+    _id: ID!
     task: String!
     createdAt: String
     date: String!
