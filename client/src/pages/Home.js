@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import {Container} from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
@@ -24,7 +24,10 @@ const Home = (props) => {
     renderNoteList = true;
     const todayDate = new Date().toString().split(' ').slice(1, 4).join().replace(/,/g, "");
     if (!loading) {
-      var thisPageTodo = todos.savedTodos.filter(todo => todo.date === todayDate)
+      var inComplete = todos.savedTodos.filter(todo => todo.isComplete === false && todo.date <= todayDate);
+      var thisPageTodo = todos.savedTodos.filter(todo => todo.date === todayDate);
+      var ids = new Set(inComplete.map(d => d._id));
+      var merged = [...inComplete, ...thisPageTodo.filter(id => !ids.has(id._id))];
     }
   };
 
@@ -35,13 +38,13 @@ const Home = (props) => {
     }
     history.push(`/day/${(value.toString().split(' ').slice(1, 4).join().replace(/,/g, ""))}`); // This is be executed when the state changes
   }, [value]);
- 
-  if (props.refetch === true){
+
+  if (props.refetch === true) {
     console.log("refetch")
     refetch();
     props.retech = false;
   }
-  
+
   return (
     <>
       {/* <Jumbotron fluid className='text-light bg-dark'>
@@ -62,20 +65,20 @@ const Home = (props) => {
 
         <NoteForm
           value={value.toString().split(' ').slice(1, 4).join().replace(/,/g, "")}
-          {...{refetch}}
+          {...{ refetch }}
         />
         {renderNoteList ? (
-        <div className="col-12 col-md-8 mb-3">
-          {loading ? (
-            <div>Loading...</div>
-          ) : (
-            <NoteList
-              todos={thisPageTodo}
-              value={value.toString().split(' ').slice(1, 4).join().replace(/,/g, "")}
-              {...{refetch}}
-            />
-          )}
-        </div>
+          <div className="col-12 col-md-8 mb-3">
+            {loading ? (
+              <div>Loading...</div>
+            ) : (
+              <NoteList
+                todos={merged}
+                value={value.toString().split(' ').slice(1, 4).join().replace(/,/g, "")}
+                {...{ refetch }}
+              />
+            )}
+          </div>
         ) : (<div>Add a note?</div>)}
 
       </Container>

@@ -54,8 +54,6 @@ const NoteList = (props) => {
 
   const handleDelete = async (id) => {
     let todosId = id.id;
-    console.log("HEEEEEEEYYYYAAA")
-    console.log(todosId)
     try {
       const { data } = await deleteTodo({
         variables: {
