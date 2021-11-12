@@ -4,7 +4,7 @@ import Calendar from 'react-calendar';
 import { useHistory } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import NoteList from '../components/NoteList'
+import NoteList from '../components/NoteList';
 import 'react-calendar/dist/Calendar.css';
 import NoteForm from '../components/NoteForm';
 import { GET_ME } from '../utils/queries';
@@ -19,8 +19,6 @@ const DayTodo = (props) => {
   const history = useHistory();
   const firstUpdate = useRef(true);
   var renderNoteList;
-
-  
 
 
   if (todos.savedTodos) {

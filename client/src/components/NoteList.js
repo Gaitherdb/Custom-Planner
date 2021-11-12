@@ -5,7 +5,7 @@ import { useMutation } from '@apollo/client';
 import { EDIT_ISCOMPLETE, DELETE_TODO } from '../utils/mutations';
 
 const NoteList = (props) => {
-  var todos = props.todos
+  var todos = props.todos;
   let { dayId } = useParams();
   if (!dayId) {
     dayId = new Date().toString().split(' ').slice(1, 4).join().replace(/,/g, "");
@@ -31,9 +31,9 @@ const NoteList = (props) => {
     }
 
     let todosId = id;
-console.log(todosId)
+    console.log(todosId)
     try {
-      const {data} = await editIsComplete({
+      const { data } = await editIsComplete({
         variables: {
           todosId,
           isComplete,
@@ -56,7 +56,7 @@ console.log(todosId)
     console.log("HEEEEEEEYYYYAAA")
     console.log(todosId)
     try {
-      const {data} = await deleteTodo({
+      const { data } = await deleteTodo({
         variables: {
           todosId
         },
@@ -74,27 +74,28 @@ console.log(todosId)
 
   return (
     <div>
-      <h3  className="card-header text-dark p-2 m-0">
+      <h3 className="card-header text-dark p-2 m-0">
         What is on your plate for today?</h3>
       {todos &&
         todos.map((todo) => (
           <div className={
             todo.isComplete
-              ? `card mb-3 dark-color complete`
-              : `card mb-3 dark-color`
+              ? `dark-color d-flex mb-1 complete`
+              : `dark-color d-flex mb-1`
           } key={todo._id} >
-            <h4 key={todo._id} onClick={() => completeTodo(todo._id)} className="card-header text-light p-2 m-0">
+            <h4 key={todo._id} onClick={() => completeTodo(todo._id)} className=" text-light mr-auto p-2 ">
               {todo.task}
             </h4>
-            <div className="icons">
-
-              <p onClick={() => setEdit({ _id: todo._id, value: todo.task })}> <span role="img" aria-label="edit">✏️</span></p>
-              <p onClick={() => handleDelete({id: todo._id})}> 🗑️</p>
-            </div>
+              <p  className="p-2" onClick={() => setEdit({ _id: todo._id, value: todo.task })}> <span role="img" aria-label="edit">✏️</span></p>
+              <p className="p-2"  onClick={() => handleDelete({ id: todo._id })}><span role="img" aria-label="delete">🗑️</span> </p>
+            
           </div>
         ))}
     </div>
   );
 };
-
+// card mb-3 
+// card mb-3 
+// m-0
+// card-header
 export default NoteList;
