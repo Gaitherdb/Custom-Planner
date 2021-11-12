@@ -25,7 +25,6 @@ const Home = (props) => {
     const todayDate = new Date().toString().split(' ').slice(1, 4).join().replace(/,/g, "");
     if (!loading) {
       var inComplete = todos.savedTodos.filter(todo => todo.isComplete === false && todo.date <= todayDate);
-      console.log("incomplete", inComplete);
       var thisPageTodo = todos.savedTodos.filter(todo => todo.date === todayDate);
       var ids = new Set(inComplete.map(d => d._id));
       var merged = [...inComplete, ...thisPageTodo.filter(id => !ids.has(id._id))];
