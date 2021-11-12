@@ -3,6 +3,24 @@ In Progress
 
 # Technologies Utilized / Required
 
+* HTML5
+* Javascript
+* React 
+* Express 
+* Apollo
+* MongoDB
+* Mongo Atlas
+* GraphQL
+* JSON Web Tokens
+* Heroku deployment
+* React-Calendar NPM
+* React Bootstrap styling engine
+
+# Instructions
+
+To download the necessary dependencies, enter the following command in the terminal:
+
+`npm i`
 
 # The Development Team
 This group project was the collaborative efforts between four University of Richmond's Full Stack Coding Bootcamp students, they are:
