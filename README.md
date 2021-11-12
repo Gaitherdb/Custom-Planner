@@ -3,9 +3,36 @@ In Progress
 
 # Technologies Utilized / Required
 
+* HTML5
+* CSS
+* Javascript ES6
+* React 
+* Node.js
+* Express.js
+* Mongoose
+* GraphQL
+* Apollo
+* MongoDB
+* Mongo Atlas
+* JSON Web Tokens
+* Heroku deployment
+* React-Calendar NPM
+* React Bootstrap styling engine
+* FortAwesome/React-fontawesome
+
+# Instructions
+
+To download the necessary dependencies, enter the following command in the terminal:
+
+`npm i`
+
+To run the application, enter the following command in the project directory's terminal:
+
+`npm start`
+
 
 # The Development Team
-This group project was the collaborative efforts between four University of Richmond's Full Stack Coding Bootcamp students, they are:
+This group project is the collaborative effort between four University of Richmond Full Stack Coding Bootcamp students, they are:
 
 Shelby Butt
 
@@ -26,3 +53,12 @@ Luke's [GitHub](https://github.com/LukeMcM89).
 # Deployed Site
 
 Visit the [deployed site](https://afternoon-hamlet-16859.herokuapp.com/).
+
+# License 
+
+# Contributors 
+
+This project is currently not looking for any further contributors.
+
+# Contact Us
+
