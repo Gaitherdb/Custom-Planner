@@ -9,7 +9,7 @@
   }
   
   .dark-color {
-    background-color: rgb(65, 72, 51);
+    background-color: rgb(55, 58, 54);
   }
   
   .background-color {
@@ -26,8 +26,8 @@
   }
   
    button {
-      background-color: rgb(65, 72, 51);
-      color: rgb(65, 72, 51);
+      background-color: rgb(55, 58, 54);
+      color: rgb(55, 58, 54);
       cursor: pointer;
       /* color: rgb(237, 224, 212); */
       /* border: rgb(237, 224, 212); */
@@ -88,4 +88,8 @@
       justify-content: center;
       align-items: center;
       flex-direction: column;
+    }
+
+    .upbutton{
+      color: whitesmoke
     }
