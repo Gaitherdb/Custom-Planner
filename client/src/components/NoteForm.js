@@ -103,7 +103,7 @@ function NoteForm(props) {
                 setTask(e.target.value); set_id(props.edit._id)
               }}
             ></input>
-            <button className="">Update</button>
+            <button className="upbutton">Update</button>
           </form>
         </div>
         )
