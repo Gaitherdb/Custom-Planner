@@ -3,18 +3,17 @@
     opacity: 0.4;
   }
 
-
   .light-color {
     background-color: rgb(101, 109, 74)
   }
   
   .dark-color {
-    background-color: rgb(65, 72, 51);
+    background-color: rgb(55, 58, 54);
   }
   
   .background-color {
-    /* background-color: rgb(237, 224, 212) */
-    background-color: rgb(166, 138, 100)
+    background-color: rgb(237, 224, 212)
+    
   }
   
   .accent-color {
@@ -26,11 +25,70 @@
   }
   
    button {
-      background-color: rgb(65, 72, 51);
-      color: rgb(65, 72, 51);
+      background-color: rgb(55, 58, 54);
+      color: rgb(55, 58, 54);
       cursor: pointer;
       /* color: rgb(237, 224, 212); */
       /* border: rgb(237, 224, 212); */
       
     }
-  
+
+    .note {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background-color: rgb(101, 109, 74);
+      border-radius: 10px;
+      padding: 1rem;
+      min-height: 170px;
+    }
+    
+    .notes-group {
+      display: grid;
+      grid-gap: 1rem;
+      grid-template-columns: repeat (auto-fit, minmax(245, 1fr));
+    }
+    
+    .note-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .p-2 {
+      cursor: pointer;
+    }
+
+    .btn {
+      color: whitesmoke;
+    }
+
+    .calDiv{
+      align-content: center;
+    }
+
+    .p-4{
+      text-align: center;
+    }
+
+    .calDiv{
+      align-content: center;
+    }
+
+    .wholeCon{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .todolDiv{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .upbutton{
+      color: whitesmoke
+    }

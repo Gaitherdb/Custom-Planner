@@ -1,5 +1,7 @@
 body {
-  font-family: 'Source Code Pro', monospace;;
+  font-family: "Source Code Pro", monospace;
+  /* background-color: rgb(237, 224, 212) */
+  background-color: lightblue
 }
 
 h1,
@@ -9,7 +11,7 @@ h4,
 h5,
 h6 {
   font-weight: 700;
-  font-family: 'Source Code Pro', monospace;
+  font-family: "Source Code Pro", monospace;
 }
 
 .small {
@@ -18,25 +20,3 @@ h6 {
 }
 
 
-
-.note {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background-color: rgb(101, 109, 74);
-  border-radius: 10px;
-  padding: 1rem;
-  min-height: 170px;
-}
-
-.notes-group {
-  display: grid;
-  grid-gap: 1rem;
-  grid-template-columns: repeat (auto-fit, minmax(245, 1fr));
-}
-
-.note-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}

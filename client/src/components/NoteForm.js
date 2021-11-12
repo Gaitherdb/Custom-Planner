@@ -58,7 +58,7 @@ function NoteForm(props) {
   };
 
   return (
-    <div>
+    <div className="todolDiv">
       <h3>Todo List</h3>
 
       {Auth.loggedIn() ? (
@@ -73,13 +73,13 @@ function NoteForm(props) {
                   name="notes"
                   placeholder="Add todo item"
                   value={task}
-                  className="form-input w-100"
+                  className="form-input w-200"
                   style={{ lineHeight: '1.5', resize: 'vertical' }}
                   onChange={(e) => setTask(e.target.value)}
                 ></textarea>
               </div>
 
-              <div className="col-12 col-lg-3">
+              <div className="col-12">
                 <button className="btn btn-block py-3 button dark-color" type="submit">
                   Add Todo Item
                 </button>
@@ -103,7 +103,7 @@ function NoteForm(props) {
                 setTask(e.target.value); set_id(props.edit._id)
               }}
             ></input>
-            <button className="bucket-button">Update</button>
+            <button className="upbutton">Update</button>
           </form>
         </div>
         )

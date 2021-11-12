@@ -4,7 +4,7 @@ import Calendar from 'react-calendar';
 import { useHistory } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import NoteList from '../components/NoteList'
+import NoteList from '../components/NoteList';
 import 'react-calendar/dist/Calendar.css';
 import NoteForm from '../components/NoteForm';
 import { GET_ME } from '../utils/queries';
@@ -19,8 +19,6 @@ const DayTodo = (props) => {
   const history = useHistory();
   const firstUpdate = useRef(true);
   var renderNoteList;
-
-  
 
 
   if (todos.savedTodos) {
@@ -43,7 +41,7 @@ const DayTodo = (props) => {
   
   return (
     <div className="my-3">
-      <div className="bg-light py-4">
+      <div className="py-4">
         <blockquote
           className="p-4"
           style={{
@@ -53,19 +51,21 @@ const DayTodo = (props) => {
             lineHeight: '1.5',
           }}
         >
-          Date:_
+          Date: 
           {dayId}
 
         </blockquote>
       </div>
-
-      <Container>
+      
+      <Container className="wholeCon">
+        <div className="calDiv">
         <Calendar
           showNavigation={true}
           onChange={setValue}
           value={value}
           view={view}
         />
+        </div>
         <NoteForm
           value={value.toString().split(' ').slice(1, 4).join().replace(/,/g, "")}
          {...{refetch}}
