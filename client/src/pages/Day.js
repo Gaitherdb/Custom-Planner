@@ -51,19 +51,21 @@ const DayTodo = (props) => {
             lineHeight: '1.5',
           }}
         >
-          Date:_
+          Date: 
           {dayId}
 
         </blockquote>
       </div>
-
-      <Container>
+      
+      <Container className="wholeCon">
+        <div className="calDiv">
         <Calendar
           showNavigation={true}
           onChange={setValue}
           value={value}
           view={view}
         />
+        </div>
         <NoteForm
           value={value.toString().split(' ').slice(1, 4).join().replace(/,/g, "")}
          {...{refetch}}

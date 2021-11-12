@@ -54,4 +54,37 @@
       align-items: center;
       justify-content: space-between;
     }
-  
+
+    .p-2 {
+      cursor: pointer;
+    }
+
+    .btn {
+      color: whitesmoke;
+    }
+
+    .calDiv{
+      align-content: center;
+    }
+
+    .p-4{
+      text-align: center;
+    }
+
+    .calDiv{
+      align-content: center;
+    }
+
+    .wholeCon{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .todolDiv{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
