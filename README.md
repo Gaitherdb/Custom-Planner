@@ -54,6 +54,11 @@ Luke's [GitHub](https://github.com/LukeMcM89).
 
 Visit the [deployed site](https://afternoon-hamlet-16859.herokuapp.com/).
 
+# Screenshots 
+
+<img width="1440" alt="Screen Shot 2021-11-12 at 7 54 19 PM" src="https://user-images.githubusercontent.com/80003989/141599430-393e215a-3610-414f-b1a5-8fba11a40575.png">
+
+
 # License 
 
 # Contributors 
