@@ -59,7 +59,7 @@ function NoteForm(props) {
 
   return (
     <div className="todolDiv">
-      <h3>Todo List</h3>
+      <h3>To-Do List</h3>
 
       {Auth.loggedIn() ? (
         !props.edit ? (
@@ -71,7 +71,7 @@ function NoteForm(props) {
               <div className="col-12 col-lg-9">
                 <textarea
                   name="notes"
-                  placeholder="Add todo item"
+                  placeholder="Add your task..."
                   value={task}
                   className="form-input w-200"
                   style={{ lineHeight: '1.5', resize: 'vertical' }}
@@ -81,7 +81,7 @@ function NoteForm(props) {
 
               <div className="col-12">
                 <button className="btn btn-block py-3 button dark-color" type="submit">
-                  Add Todo Item
+                  Add to your ToDo List
                 </button>
               </div>
               {error && (
@@ -109,7 +109,7 @@ function NoteForm(props) {
         )
       ) : (
         <p>
-          You need to be logged in to add to your todo list.
+          You need to be logged in to start a todo list.
         </p>
       )}
     </div>

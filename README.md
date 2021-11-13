@@ -1,5 +1,6 @@
 # Custom-Planner
-In Progress
+
+A custom calendar / todo daily planner. Featuring React. The application allows the user to simply and easily selected a date from the calendar form and make edits, additions or deletions to daily notes / tasks. 
 
 # Technologies Utilized / Required
 
@@ -45,6 +46,11 @@ If you want to run this on a local server, set the path to the Custom-Planner fo
 
 Go to http://localhost:3000 to access the site.
 
+# Screenshots 
+
+<img width="1440" alt="Screen Shot 2021-11-12 at 7 54 19 PM" src="https://user-images.githubusercontent.com/80003989/141599430-393e215a-3610-414f-b1a5-8fba11a40575.png">
+
+
 # The Development Team
 This group project is the collaborative effort between four University of Richmond Full Stack Coding Bootcamp students, they are:
 
@@ -63,14 +69,6 @@ David's [GitHub](https://github.com/Gaitherdb).
 Luke McMurtrie
 
 Luke's [GitHub](https://github.com/LukeMcM89).
-
-# Deployed Site
-
-Visit the [deployed site](https://afternoon-hamlet-16859.herokuapp.com/).
-
-# Screenshots 
-
-<img width="1440" alt="Screen Shot 2021-11-12 at 7 54 19 PM" src="https://user-images.githubusercontent.com/80003989/141599430-393e215a-3610-414f-b1a5-8fba11a40575.png">
 
 # License 
 

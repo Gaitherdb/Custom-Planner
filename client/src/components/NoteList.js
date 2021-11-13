@@ -74,7 +74,7 @@ const NoteList = (props) => {
   return (
     <div>
       <h5 className="todolDiv text-center">
-        What is on your plate for today?</h5>
+        What is on your plate?</h5>
       {todos &&
         todos.map((todo) => (
           <div className={
