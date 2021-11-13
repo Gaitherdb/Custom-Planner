@@ -57,10 +57,10 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
 
-    async editTodo(parent, { todosId, task, date }, context) {
+    async editTodo(parent, { todosId, task }, context) {
 
       if (context.user) {
-        // Find and update the matching class using the destructured args
+        
         const updatedTodo = await Todo.findByIdAndUpdate(
           { _id: todosId },
           { task },
@@ -75,7 +75,7 @@ const resolvers = {
     async editIsComplete(parent, { todosId, isComplete}, context) {
 
       if (context.user) {
-        // Find and update the matching class using the destructured args
+        
         const updatedTodo = await Todo.findByIdAndUpdate(
           { _id: todosId },
           { isComplete },

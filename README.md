@@ -35,6 +35,7 @@ To run the application, enter the following command in the project directory's t
 # Deployed Site
 
 Visit the [deployed site](https://afternoon-hamlet-16859.herokuapp.com/).
+Test Acount: Email: test@test.com  Password: !t3stmyPw0rd
 
 # Usage
 
