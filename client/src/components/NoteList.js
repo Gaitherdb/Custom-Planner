@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import NoteForm from '../components/NoteForm';
 import { useMutation } from '@apollo/client';
 import { EDIT_ISCOMPLETE, DELETE_TODO } from '../utils/mutations';
-import { edit, f2ed } from '@fortawesome/react-fontawesome'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 const NoteList = (props) => {
   var todos = props.todos;
@@ -85,7 +85,7 @@ const NoteList = (props) => {
             <h4 key={todo._id} onClick={() => completeTodo(todo._id)} className=" text-light mr-auto p-2 ">
               {todo.task}
             </h4>
-              <p  className="p-2" onClick={() => setEdit({ _id: todo._id, value: todo.task })}> <span role="img" aria-label="edit">🐧 <i class="far fa-edit"></i></span></p>
+              <p  className="p-2" onClick={() => setEdit({ _id: todo._id, value: todo.task })}> <span role="img" aria-label="edit"><FontAwesomeIcon icon="edit" /></span></p>
               <p className="p-2"  onClick={() => handleDelete({ id: todo._id })}><span role="img" aria-label="delete">🗑️</span> </p>
             
           </div>
