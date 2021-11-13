@@ -46,6 +46,11 @@ If you want to run this on a local server, set the path to the Custom-Planner fo
 
 Go to http://localhost:3000 to access the site.
 
+# Screenshots 
+
+<img width="1440" alt="Screen Shot 2021-11-12 at 7 54 19 PM" src="https://user-images.githubusercontent.com/80003989/141599430-393e215a-3610-414f-b1a5-8fba11a40575.png">
+
+
 # The Development Team
 This group project is the collaborative effort between four University of Richmond Full Stack Coding Bootcamp students, they are:
 
