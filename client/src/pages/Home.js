@@ -39,19 +39,14 @@ const Home = (props) => {
     history.push(`/day/${(value.toString().split(' ').slice(1, 4).join().replace(/,/g, ""))}`); // This is be executed when the state changes
   }, [value]);
 
-  if (props.refetch === true) {
-    console.log("refetch")
-    refetch();
-    props.retech = false;
-  }
+  // if (props.refetch === true) {
+  //   console.log("refetch")
+  //   refetch();
+  //   props.retech = false;
+  // }
 
   return (
     <>
-      {/* <Jumbotron fluid className='text-light bg-dark'>
-        <Container>
-        
-        </Container>
-      </Jumbotron> */}
 
       <Container className="wholeCon">
       <div className="calDiv">
