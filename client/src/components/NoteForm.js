@@ -71,7 +71,7 @@ function NoteForm(props) {
               <div className="col-12 col-lg-9">
                 <textarea
                   name="notes"
-                  placeholder="Add your task..."
+                  placeholder="New task..."
                   value={task}
                   className="form-input w-200"
                   style={{ lineHeight: '1.5', resize: 'vertical' }}
@@ -81,7 +81,7 @@ function NoteForm(props) {
 
               <div className="col-12">
                 <button className="btn btn-block py-3 button dark-color" type="submit">
-                  Add to your ToDo List
+                  Add to your list
                 </button>
               </div>
               {error && (
@@ -92,7 +92,7 @@ function NoteForm(props) {
             </form>
           </>
         ) : (<div>
-          <h3>Update entry: {props.edit.value}</h3>
+          <h3>Update task: {props.edit.value}</h3>
           <form className="" onSubmit={handleEditSubmit}>
             <input
               type="text"
