@@ -20,7 +20,8 @@ In Progress
 * React Bootstrap styling engine
 * FortAwesome/React-fontawesome
 
-# Instructions
+# Installation
+
 
 To download the necessary dependencies, enter the following command in the terminal:
 
@@ -30,6 +31,19 @@ To run the application, enter the following command in the project directory's t
 
 `npm start`
 
+# Deployed Site
+
+Visit the [deployed site](https://afternoon-hamlet-16859.herokuapp.com/).
+
+# Usage
+
+If you want to run this on a local server, set the path to the Custom-Planner folder in the terminal.
+
+ Then run the server.js file by typing the following command in the terminal:
+ 
+`npm start`
+
+Go to http://localhost:3000 to access the site.
 
 # The Development Team
 This group project is the collaborative effort between four University of Richmond Full Stack Coding Bootcamp students, they are:
@@ -58,7 +72,6 @@ Visit the [deployed site](https://afternoon-hamlet-16859.herokuapp.com/).
 
 <img width="1440" alt="Screen Shot 2021-11-12 at 7 54 19 PM" src="https://user-images.githubusercontent.com/80003989/141599430-393e215a-3610-414f-b1a5-8fba11a40575.png">
 
-
 # License 
 
 # Contributors 
@@ -67,3 +80,10 @@ This project is currently not looking for any further contributors.
 
 # Contact Us
 
+gaitherdb@gmail.com
+
+apalmer37@gmail.com
+
+shelbythebutt@gmail.com
+
+lmcmurtrie89@gmail.com
