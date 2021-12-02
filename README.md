@@ -68,7 +68,7 @@ This project is licensed under the terms of the [MIT License](https://opensource
 
 ## The Development Team
 
-This group project is the collaborative effort between four University of Richmond Full Stack Coding Bootcamp students, they are:
+This group project is the collaborative effort between four University of Richmond Full Stack Coding Bootcamp students. 
 
 Shelby Butt
 
