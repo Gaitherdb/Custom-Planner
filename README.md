@@ -34,7 +34,7 @@ To run the application, enter the following command in the project directory's t
 
 ## Deployed Site
 
-Visit the [deployed site](https://afternoon-hamlet-16859.herokuapp.com/).
+Visit the [Customer Calendar](https://afternoon-hamlet-16859.herokuapp.com/).
 Test Acount: Email: test@test.com  Password: !t3stmyPw0rd
 
 ## Usage
@@ -43,7 +43,7 @@ If you want to run this on a local server, set the path to the Custom-Planner fo
 
  Then run the server.js file by typing the following command in the terminal:
  
-`npm start`
+`npm run develop`
 
 Go to http://localhost:3000 to access the site.
 
