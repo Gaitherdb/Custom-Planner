@@ -47,7 +47,7 @@ function App() {
         <Switch>
           <Route exact path='/' component={Home} />
           <Route exact path='/day/:dayId' component={DayTodo} />
-          <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
+          <Route render={() => <h1 className='display-1'>Wrong page!</h1>} />
         </Switch>
       </>
     </Router>

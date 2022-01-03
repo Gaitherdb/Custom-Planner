@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import NoteForm from '../components/NoteForm';
 import { useMutation } from '@apollo/client';
 import { EDIT_ISCOMPLETE, DELETE_TODO } from '../utils/mutations';
+import Modal from 'react-bootstrap/Modal'
+
 
 
 const NoteList = (props) => {
@@ -16,6 +18,11 @@ const NoteList = (props) => {
     _id: null,
     value: '',
   });
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const [editIsComplete] = useMutation(EDIT_ISCOMPLETE);
   const [deleteTodo] = useMutation(DELETE_TODO);
@@ -91,14 +98,36 @@ const NoteList = (props) => {
           }
          
             key={todo._id} >
-            <h4 key={todo._id} onClick={() => completeTodo(todo._id)} className=" text-light mr-auto " id='todo-area'>
+            <button key={todo._id} onClick={() => completeTodo(todo._id)} className=" text-light mr-auto " id='todo-button'>
               {todo.task}
-            </h4>
+            </button>
             <p className="p-2" onClick={() => setEdit({ _id: todo._id, value: todo.task })}> <span role="img" aria-label="edit"><i className="far fa-edit accent-color-light"></i></span></p>
-            <p className="p-2" onClick={() => handleDelete({ id: todo._id })}><span role="img" aria-label="delete"><i className="far fa-trash-alt accent-color-light"></i></span> </p>
-
+            <p className="p-2" variant="primary" onClick={handleShow} ><span role="img" aria-label="delete"><i className="far fa-trash-alt accent-color-light"></i></span> </p>
+            {/* onClick={() => handleDelete({ id: todo._id })} */}
+            <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title><span role="img" aria-label="delete"><i className="far fa-trash-alt "></i></span></Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Are you sure you want to delete?
+        </Modal.Body>
+        <Modal.Footer>
+          <button className="text-light" variant="secondary" onClick={handleClose}>
+            Close
+          </button>
+          <button className="text-light" variant="primary" onClick={() => handleDelete({ id: todo._id })}>Yes</button>
+        </Modal.Footer>
+      </Modal>
           </div>
         ))}
+
+     
+
     </div>
   );
 };
