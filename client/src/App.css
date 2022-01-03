@@ -24,9 +24,9 @@
     background-color: rgb(166, 138, 100)
   }
 
-  #todo-area{
+  #todo-button{
     cursor:pointer;
-    padding: 3% 35% 3% 4%;
+    padding: 3% 6% 3% 4%;
   }
   
    button {
