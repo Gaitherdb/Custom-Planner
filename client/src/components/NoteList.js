@@ -78,16 +78,25 @@ const NoteList = (props) => {
       {todos &&
         todos.map((todo) => (
           <div className={
+            //if todo is complete, cross it out and it'll disappear from home page if it's old
             todo.isComplete
               ? `dark-color d-flex mb-1 complete`
               : `dark-color d-flex mb-1`
-          } key={todo._id} >
+            &&
+            //if todo is incomplete and old, it'll have a red border around it
+            todo.date < dayId
+              ? `dark-color d-flex mb-1 redBorder`
+              : `dark-color d-flex mb-1`
+
+          }
+         
+            key={todo._id} >
             <h4 key={todo._id} onClick={() => completeTodo(todo._id)} className=" text-light mr-auto p-2 ">
               {todo.task}
             </h4>
-              <p  className="p-2" onClick={() => setEdit({ _id: todo._id, value: todo.task })}> <span role="img" aria-label="edit"><i class="far fa-edit accent-color-light"></i></span></p>
-              <p className="p-2"  onClick={() => handleDelete({ id: todo._id })}><span role="img" aria-label="delete"><i class="far fa-trash-alt accent-color-light"></i></span> </p>
-            
+            <p className="p-2" onClick={() => setEdit({ _id: todo._id, value: todo.task })}> <span role="img" aria-label="edit"><i className="far fa-edit accent-color-light"></i></span></p>
+            <p className="p-2" onClick={() => handleDelete({ id: todo._id })}><span role="img" aria-label="delete"><i className="far fa-trash-alt accent-color-light"></i></span> </p>
+
           </div>
         ))}
     </div>
