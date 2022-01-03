@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import NoteForm from '../components/NoteForm';
 import { useMutation } from '@apollo/client';
 import { EDIT_ISCOMPLETE, DELETE_TODO } from '../utils/mutations';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+
 
 const NoteList = (props) => {
   var todos = props.todos;
@@ -93,8 +93,5 @@ const NoteList = (props) => {
     </div>
   );
 };
-// card mb-3 
-// card mb-3 
-// m-0
-// card-header
+
 export default NoteList;

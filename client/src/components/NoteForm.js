@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { EDIT_TODO, SAVE_TODO } from '../utils/mutations';
 import Auth from '../utils/auth';
