@@ -75,6 +75,10 @@
       align-content: center;
     }
 
+    .redBorder{
+      border-style: inset;
+      border-color: rgb(139, 17, 17);
+    }
     .wholeCon{
       display: flex;
       justify-content: center;

@@ -26,6 +26,7 @@ const Home = (props) => {
       var thisPageTodo = todos.savedTodos.filter(todo => todo.date === todayDate);
       var ids = new Set(inComplete.map(d => d._id));
       var merged = [...inComplete, ...thisPageTodo.filter(id => !ids.has(id._id))];
+      console.log(merged)
     }
   };
 
