@@ -91,7 +91,7 @@ const NoteList = (props) => {
           }
          
             key={todo._id} >
-            <h4 key={todo._id} onClick={() => completeTodo(todo._id)} className=" text-light mr-auto p-2 ">
+            <h4 key={todo._id} onClick={() => completeTodo(todo._id)} className=" text-light mr-auto " id='todo-area'>
               {todo.task}
             </h4>
             <p className="p-2" onClick={() => setEdit({ _id: todo._id, value: todo.task })}> <span role="img" aria-label="edit"><i className="far fa-edit accent-color-light"></i></span></p>

@@ -23,6 +23,11 @@
   .accent-color-light {
     background-color: rgb(166, 138, 100)
   }
+
+  #todo-area{
+    cursor:pointer;
+    padding: 3% 35% 3% 4%;
+  }
   
    button {
       background-color: rgb(55, 58, 54);
