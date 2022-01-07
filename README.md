@@ -52,7 +52,7 @@ npm i
 
 ## Usage
 
-Access the webpage by going to the deployed site: [Custom Calendar](https://afternoon-hamlet-16859.herokuapp.com/).
+Access the webpage by going to the deployed site: [Custom Calendar](https://davidscalendar.herokuapp.com/).
 
 Test Account: test2@email.com Password: !t3stmyPw0rd
 
