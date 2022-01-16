@@ -124,7 +124,7 @@ const NoteList = (props) => {
         </Modal.Footer>
       </Modal>
           </div>
-        ))};
+        ))}
 
      
 
