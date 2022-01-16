@@ -11,6 +11,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from './pages/Home';
 import DayTodo from './pages/Day';
+import MonthTodo from './pages/Month';
 
 import Navbar from './components/Navbar';
 

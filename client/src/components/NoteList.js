@@ -39,7 +39,7 @@ const NoteList = (props) => {
     }
 
     let todosId = id;
-    console.log(todosId)
+    
     try {
       const { data } = await editIsComplete({
         variables: {
@@ -124,7 +124,7 @@ const NoteList = (props) => {
         </Modal.Footer>
       </Modal>
           </div>
-        ))}
+        ))};
 
      
 

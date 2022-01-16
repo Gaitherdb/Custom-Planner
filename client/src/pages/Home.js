@@ -24,7 +24,9 @@ const Home = (props) => {
     if (!loading) {
       var inComplete = todos.savedTodos.filter(todo => todo.isComplete === false && todo.date <= todayDate);
       var thisPageTodo = todos.savedTodos.filter(todo => todo.date === todayDate);
+      //finds the ids of all the incomplete todos
       var ids = new Set(inComplete.map(d => d._id));
+      //a list of all the incomplete todos and any todos created today except for any incomplete todos from today as they are already accounted for
       var merged = [...inComplete, ...thisPageTodo.filter(id => !ids.has(id._id))];
       
     }
@@ -35,6 +37,7 @@ const Home = (props) => {
       firstUpdate.current = false;
       return;
     }
+    //changes the url to the date page for the date selected on the calendar
     history.push(`/day/${(value.toString().split(' ').slice(1, 4).join().replace(/,/g, ""))}`); // This is be executed when the state changes
   }, [value]);
 
