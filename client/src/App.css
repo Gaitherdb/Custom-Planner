@@ -83,6 +83,7 @@
     .redBorder{
       border-style: inset;
       border-color: rgb(139, 17, 17);
+      border-width: thin medium thin;
     }
     .wholeCon{
       display: flex;
