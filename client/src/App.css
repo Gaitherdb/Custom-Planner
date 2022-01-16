@@ -80,6 +80,9 @@
       align-content: center;
     }
 
+    .listItem{
+      display: list-item! important;
+    }
     .redBorder{
       border-style: inset;
       border-color: rgb(139, 17, 17);
