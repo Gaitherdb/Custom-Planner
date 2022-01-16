@@ -103,7 +103,7 @@ const NoteList = (props) => {
             </button>
             <p className="p-2" onClick={() => setEdit({ _id: todo._id, value: todo.task })}> <span role="img" aria-label="edit"><i className="far fa-edit accent-color-light"></i></span></p>
             <p className="p-2" variant="primary" onClick={handleShow} ><span role="img" aria-label="delete"><i className="far fa-trash-alt accent-color-light"></i></span> </p>
-            {/* onClick={() => handleDelete({ id: todo._id })} */}
+           
             <Modal
         show={show}
         onHide={handleClose}
