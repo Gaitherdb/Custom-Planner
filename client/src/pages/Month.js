@@ -1,0 +1,71 @@
+import React, { useState, useEffect, useRef } from "react";
+import { Container } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { useQuery } from "@apollo/client";
+import { GET_ME } from "../utils/queries";
+
+const Month = (props) => {
+    const { loading, data, refetch } = useQuery(GET_ME);
+    const todos = data?.me || [];
+    var allTodos = todos.savedTodos;
+    const todayMonth = new Date().toString().split(' ').slice(1, 2);
+    // const monthDate;
+    // .slice(1, 4).join().replace(/,/g, ""
+
+    var renderMonthlyReview;
+    var monthId;
+
+
+
+
+
+    if (allTodos) {
+        renderMonthlyReview = true;
+
+
+        if (!loading) {
+            //gets all the todos that were created this month
+            var thisMonthTodo = allTodos.filter(todo => todo.date.toString().split('').slice(0, 3).join().replace(/,/g, "") === todayMonth[0])
+            console.log(thisMonthTodo[0].isComplete)
+        }
+    }
+
+    if (!allTodos) {
+        return <h3>No notes for this month yet.</h3>;
+    }
+
+    return (
+        <>
+            <Container className="wholeCon">
+                <div className="todolDiv text-center">
+                    {renderMonthlyReview ? (
+                        <div className="col-12 col-md-8 mb-3">
+                            {loading ? (
+                                <div>Loading...</div>
+                            ) : (
+
+                                <ol>{todayMonth[0]} To-Dos
+                                    {thisMonthTodo.map((todo) => (
+                                        
+                                        todo.isComplete ? (
+                                            <li className=" d-flex mb-1 listItem" key={todo._id}>  ✔ {todo.task} {todo.date}</li>
+                                        ) : (
+                                            <li className=" d-flex mb-1 listItem" key={todo._id}>  ✖ {todo.task} {todo.date}</li>
+                                        )
+
+                                    ))
+                                    }
+                                </ol>
+                            )}
+                        </div>
+                    ) : (
+                        <div>Add a note to a date to see your monthly review!</div>
+                    )}
+                </div>
+            </Container>
+        </>
+    );
+};
+
+export default Month;

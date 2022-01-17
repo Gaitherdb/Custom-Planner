@@ -11,6 +11,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from './pages/Home';
 import DayTodo from './pages/Day';
+import Month from './pages/Month';
 
 import Navbar from './components/Navbar';
 
@@ -47,6 +48,7 @@ function App() {
         <Switch>
           <Route exact path='/' component={Home} />
           <Route exact path='/day/:dayId' component={DayTodo} />
+          <Route exact path='/month' component={Month} />
           <Route render={() => <h1 className='display-1'>Wrong page!</h1>} />
         </Switch>
       </>
