@@ -4,6 +4,8 @@
 
 ## Description
 
+Access the webpage by going to the deployed site: [Custom Calendar](https://davidscalendar.herokuapp.com/).
+
 Test Account: test2@email.com Password: !t3stmyPw0rd
 
 A mobile-first day planner web application that allows a user to create an account, select a day from the calendar and create a to-do list. Edit, erase, or complete created to-do items. Each uncompleted to-do item rolls over to the next day. To-do lists refresh monthly.
