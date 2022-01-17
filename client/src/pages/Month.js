@@ -8,22 +8,30 @@ import { GET_ME } from "../utils/queries";
 const Month = (props) => {
     const { loading, data, refetch } = useQuery(GET_ME);
     const todos = data?.me || [];
-    const thisMonthNotes = todos.savedTodos;
+    var allTodos = todos.savedTodos;
+    const todayMonth = new Date().toString().split(' ').slice(1,2);
+    // const monthDate;
+    // .slice(1, 4).join().replace(/,/g, ""
+    
     var renderMonthlyReview;
     var monthId;
 
-    console.log(thisMonthNotes);
+   
+    
+   
 
-    if (todos.savedTodos) {
+    if (allTodos) {
         renderMonthlyReview = true;
+         
 
         if (!loading) {
-            // var thisMonthTodo = todos.savedTodos.filter(todo => todo.date === monthId)
-            //if they have ever posted before, they can see the notes section. We link part of the prop in the note section, and if they dont have todos it'll break
+            //gets all the todos that were created this month
+            var thisMonthTodo = allTodos.filter(todo => todo.date.toString().split('').slice(0,3).join().replace(/,/g, "") === todayMonth[0])
+            console.log(thisMonthTodo)
         }
     }
 
-    if (!thisMonthNotes) {
+    if (!allTodos) {
         return <h3>No notes for this month yet.</h3>;
     }
 
@@ -36,8 +44,9 @@ const Month = (props) => {
                             {loading ? (
                                 <div>Loading...</div>
                             ) : (
-                                <ol>
-                                    {thisMonthNotes.map((todo) => (
+                                
+                                <ol>{todayMonth[0]} To-Dos
+                                    {thisMonthTodo.map((todo) => (
                                         <li className=" d-flex mb-1 listItem" key={todo._id}>
                                             {todo.task}
                                         </li>
