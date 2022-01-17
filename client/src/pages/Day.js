@@ -21,6 +21,7 @@ const DayTodo = (props) => {
   var renderNoteList;
 
 
+
   if (todos.savedTodos) {
     
     if (!loading) {
