@@ -9,25 +9,25 @@ const Month = (props) => {
     const { loading, data, refetch } = useQuery(GET_ME);
     const todos = data?.me || [];
     var allTodos = todos.savedTodos;
-    const todayMonth = new Date().toString().split(' ').slice(1,2);
+    const todayMonth = new Date().toString().split(' ').slice(1, 2);
     // const monthDate;
     // .slice(1, 4).join().replace(/,/g, ""
-    
+
     var renderMonthlyReview;
     var monthId;
 
-   
-    
-   
+
+
+
 
     if (allTodos) {
         renderMonthlyReview = true;
-         
+
 
         if (!loading) {
             //gets all the todos that were created this month
-            var thisMonthTodo = allTodos.filter(todo => todo.date.toString().split('').slice(0,3).join().replace(/,/g, "") === todayMonth[0])
-            console.log(thisMonthTodo)
+            var thisMonthTodo = allTodos.filter(todo => todo.date.toString().split('').slice(0, 3).join().replace(/,/g, "") === todayMonth[0])
+            console.log(thisMonthTodo[0].isComplete)
         }
     }
 
@@ -44,15 +44,19 @@ const Month = (props) => {
                             {loading ? (
                                 <div>Loading...</div>
                             ) : (
-                                
+
                                 <ol>{todayMonth[0]} To-Dos
                                     {thisMonthTodo.map((todo) => (
-                                        <li className=" d-flex mb-1 listItem" key={todo._id}>
-                                            {todo.task}
-                                        </li>
+                                        
+                                        todo.isComplete ? (
+                                            <li className=" d-flex mb-1 listItem" key={todo._id}>  ✔ {todo.task} {todo.date}</li>
+                                        ) : (
+                                            <li className=" d-flex mb-1 listItem" key={todo._id}>  ✖ {todo.task} {todo.date}</li>
+                                        )
+
                                     ))
                                     }
-                                    </ol>
+                                </ol>
                             )}
                         </div>
                     ) : (
