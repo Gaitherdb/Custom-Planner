@@ -38,7 +38,7 @@ const Month = (props) => {
     return (
         <>
             <Container className="wholeCon">
-                <div className="todolDiv text-center">
+                <div className="todolDiv">
                     {renderMonthlyReview ? (
                         <div className="col-12 col-md-8 mb-3">
                             {loading ? (
@@ -47,7 +47,7 @@ const Month = (props) => {
 
                                 <ol>{todayMonth[0]} To-Dos
                                     {thisMonthTodo.map((todo) => (
-                                        
+
                                         todo.isComplete ? (
                                             <li className=" d-flex mb-1 listItem" key={todo._id}>  ✔ {todo.task} {todo.date}</li>
                                         ) : (

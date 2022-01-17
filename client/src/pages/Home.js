@@ -22,6 +22,7 @@ const Home = (props) => {
     renderNoteList = true;
     const todayDate = new Date().toString().split(' ').slice(1, 4).join().replace(/,/g, "");
     if (!loading) {
+      
       var inComplete = todos.savedTodos.filter(todo => todo.isComplete === false && todo.date <= todayDate);
       var thisPageTodo = todos.savedTodos.filter(todo => todo.date === todayDate);
       //finds the ids of all the incomplete todos
