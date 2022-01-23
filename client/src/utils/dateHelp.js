@@ -1,24 +1,36 @@
 class dateHelp {
 
-getYear(value){
-    if(value) {
-       return value.toString().split(' ').slice(3, 4)[0];
+  getYear(value) {
+    if (value) {
+      return value.toString().split(' ').slice(3, 4)[0];
     }
-   return new Date().toString().split(' ').slice(3, 4)[0];
-}
+    return new Date().toString().split(' ').slice(3, 4)[0];
+  }
 
-getDay(value){
-    if(value) {
-        return value.toString().split(' ').slice(2,3)[0];
+  getDay(value) {
+    if (value) {
+      return value.toString().split(' ').slice(2, 3)[0];
     }
-    return new Date().toString().split(' ').slice(2,3)[0];
-}
+    return new Date().toString().split(' ').slice(2, 3)[0];
+  }
 
-getMonthLetters(){
-    return new Date().toString().split(' ').slice(1,2)[0];
-}
+  getMonth(value) {
+    if (value) {
+      return value.split('').slice(4, 6).join().replace(/,/g, "")
+    }
+    //no need to get new date info bc the calendar uses letters
+  }
 
-getMonth(monthLetters){
+  getMonthLetters(value) {
+    if (value) {
+      return value.toString().split(' ').slice(1, 2)[0];
+    }
+    return new Date().toString().split(' ').slice(1, 2)[0];
+  }
+
+
+
+  monthConversion(monthLetters) {
     var month;
 
     switch (monthLetters) {
@@ -34,7 +46,7 @@ getMonth(monthLetters){
       case 'Apr':
         month = "04";
         break;
-      case 'May': 
+      case 'May':
         month = "05";
         break;
       case 'Jun':
@@ -60,12 +72,51 @@ getMonth(monthLetters){
         break;
     }
     return month;
-}
-    
-    // console.log(year)
-    // console.log(day)
-    // console.log(month)
-    // const  todayDate =   year + month + day;
+  }
+
+  monthFullName(value) {
+    var month;
+    switch (value) {
+      case '01':
+        month = "January";
+        break;
+      case '02':
+        month = "Feburary";
+        break;
+      case '03':
+        month = "March";
+        break;
+      case '04':
+        month = "April";
+        break;
+      case '05':
+        month = "May";
+        break;
+      case '06':
+        month = "June";
+        break;
+      case '07':
+        month = "July";
+        break;
+      case '08':
+        month = "August";
+        break;
+      case '09':
+        month = "September";
+        break;
+      case '10':
+        month = "October";
+        break;
+      case '11':
+        month = "November";
+        break;
+      case '12':
+        month = "December";
+        break;
+    }
+    return month;
+
+  }
 }
 
-    export default new dateHelp();
+export default new dateHelp();

@@ -18,43 +18,26 @@ const Home = (props) => {
   const history = useHistory();
   const firstUpdate = useRef(true);
   var renderNoteList;
-  // console.log(new Date().toString().split(' '))
+
+  const year = dateHelp.getYear();
+  const day = dateHelp.getDay();
+  const monthLetters = dateHelp.getMonthLetters();
+  const month = dateHelp.monthConversion(monthLetters);
+  const todayDate = year + month + day;
+  var valueDate;
 
   if (todos.savedTodos) {
     renderNoteList = true;
 
-     
-    const year = dateHelp.getYear();
-    console.log(year)
-    const day = dateHelp.getDay();
-    console.log(day)
-    const monthLetters = dateHelp.getMonthLetters();
-    console.log(monthLetters)
-    const month = dateHelp.getMonth(monthLetters);
-    console.log(month)
-    
-
-    const  todayDate =   year + month + day;
-    var valueDate;
-   
-
-  
-    // // console.log(todos.savedTodos[0].date >= todayDate)
-    // console.log(todayDate)
-    // // console.log(todos.savedTodos[17].date)
-    // // join().replace(/,/g, "")
-   
-   
-    // new Date().toString().split(' ').slice(1, 4).join().replace(/,/g, "");
     if (!loading) {
-      
+
       var inComplete = todos.savedTodos.filter(todo => todo.isComplete === false && todo.date <= todayDate);
       var thisPageTodo = todos.savedTodos.filter(todo => todo.date === todayDate);
       //finds the ids of all the incomplete todos
       var ids = new Set(inComplete.map(d => d._id));
       //a list of all the incomplete todos and any todos created today except for any incomplete todos from today as they are already accounted for
       var merged = [...inComplete, ...thisPageTodo.filter(id => !ids.has(id._id))];
-      
+
     }
   };
 
@@ -66,14 +49,11 @@ const Home = (props) => {
     let valueYear = dateHelp.getYear(value);
     let valueDay = dateHelp.getDay(value);
     let valueMonthLetters = dateHelp.getMonthLetters(value);
-    let valueMonth = dateHelp.getMonth(valueMonthLetters);
+    let valueMonth = dateHelp.monthConversion(valueMonthLetters);
     valueDate = valueYear + valueMonth + valueDay;
-    console.log(dateHelp.getYear(value));
-    console.log(dateHelp.getDay(value));
-    console.log(dateHelp.getMonthLetters(value));
-    console.log(valueDate)
+    
     //changes the url to the date page for the date selected on the calendar
-    history.push(`/day/${(value.toString().split(' ').slice(1, 4).join().replace(/,/g, ""))}`); // This is be executed when the state changes
+    history.push(`/day/${(valueDate)}`); // This is be executed when the state changes
   }, [value]);
 
 
@@ -81,17 +61,17 @@ const Home = (props) => {
     <>
 
       <Container className="wholeCon">
-      <div className="calDiv">
-        <Calendar
-          showNavigation={true}
-          onChange={setValue}
-          value={value}
-          view={view}
-        />
-         </div>
-
+        <div className="calDiv">
+          <Calendar
+            showNavigation={true}
+            onChange={setValue}
+            value={value}
+            view={view}
+          />
+        </div>
+        {/* value.toString().split(' ').slice(1, 4).join().replace(/,/g, "") */}
         <NoteForm
-          value={value.toString().split(' ').slice(1, 4).join().replace(/,/g, "")}
+          value={todayDate}
           {...{ refetch }}
         />
         {renderNoteList ? (
@@ -101,7 +81,7 @@ const Home = (props) => {
             ) : (
               <NoteList
                 todos={merged}
-                value={value.toString().split(' ').slice(1, 4).join().replace(/,/g, "")}
+                value={todayDate}
                 {...{ refetch }}
               />
             )}

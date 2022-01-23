@@ -8,7 +8,8 @@ import NoteList from '../components/NoteList';
 import 'react-calendar/dist/Calendar.css';
 import NoteForm from '../components/NoteForm';
 import { GET_ME } from '../utils/queries';
-// Jumbotron, Container, Col, Form, Button, Card, CardColumns 
+import dateHelp from '../utils/dateHelp';
+
 const DayTodo = (props) => {
   const { dayId } = useParams();
   const { loading, data, refetch } = useQuery(GET_ME);
@@ -19,6 +20,7 @@ const DayTodo = (props) => {
   const history = useHistory();
   const firstUpdate = useRef(true);
   var renderNoteList;
+  var valueDate;
 
 
 
@@ -36,7 +38,13 @@ const DayTodo = (props) => {
       firstUpdate.current = false;
       return;
     }
-    history.push(`/day/${(value.toString().split(' ').slice(1, 4).join().replace(/,/g, ""))}`); // This is be executed when the state changes
+    let valueYear = dateHelp.getYear(value);
+    let valueDay = dateHelp.getDay(value);
+    let valueMonthLetters = dateHelp.getMonthLetters(value);
+    let valueMonth = dateHelp.monthConversion(valueMonthLetters);
+    valueDate = valueYear + valueMonth + valueDay;
+
+    history.push(`/day/${(valueDate)}`); // This is be executed when the state changes
   }, [value]);
 
   

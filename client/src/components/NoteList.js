@@ -3,7 +3,8 @@ import { useParams } from 'react-router-dom';
 import NoteForm from '../components/NoteForm';
 import { useMutation } from '@apollo/client';
 import { EDIT_ISCOMPLETE, DELETE_TODO } from '../utils/mutations';
-import Modal from 'react-bootstrap/Modal'
+import Modal from 'react-bootstrap/Modal';
+import dateHelp from '../utils/dateHelp';
 
 
 
@@ -11,7 +12,12 @@ const NoteList = (props) => {
   var todos = props.todos;
   let { dayId } = useParams();
   if (!dayId) {
-    dayId = new Date().toString().split(' ').slice(1, 4).join().replace(/,/g, "");
+    const year = dateHelp.getYear();
+    const day = dateHelp.getDay();
+    const monthLetters = dateHelp.getMonthLetters();
+    const month = dateHelp.monthConversion(monthLetters);
+    const todayDate = year + month + day;
+    dayId = todayDate;
   }
 
   const [edit, setEdit] = useState({

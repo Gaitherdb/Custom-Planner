@@ -3,13 +3,20 @@ import { useParams } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { EDIT_TODO, SAVE_TODO } from '../utils/mutations';
 import Auth from '../utils/auth';
+import dateHelp from '../utils/dateHelp';
 
 
 function NoteForm(props) {
   let { dayId } = useParams();
 
   if (!dayId) {
-    dayId = new Date().toString().split(' ').slice(1, 4).join().replace(/,/g, "");
+
+    const year = dateHelp.getYear();
+    const day = dateHelp.getDay();
+    const monthLetters = dateHelp.getMonthLetters();
+    const month = dateHelp.monthConversion(monthLetters);
+    const todayDate = year + month + day;
+    dayId = todayDate;
   }
 
   const date = dayId;
