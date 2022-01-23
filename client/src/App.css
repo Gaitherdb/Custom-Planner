@@ -38,6 +38,10 @@
       
     }
 
+    .dateFont {
+      font-size: 50%;
+    }
+
     .note {
       display: flex;
       flex-direction: column;

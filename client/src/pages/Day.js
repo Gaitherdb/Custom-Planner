@@ -38,6 +38,7 @@ const DayTodo = (props) => {
       firstUpdate.current = false;
       return;
     }
+    //converts date format from calendar to specific order for app
     let valueYear = dateHelp.getYear(value);
     let valueDay = dateHelp.getDay(value);
     let valueMonthLetters = dateHelp.getMonthLetters(value);
@@ -61,7 +62,7 @@ const DayTodo = (props) => {
           }}
         >
           Date: 
-          {dayId}
+          {dateHelp.writtenDate(dayId)}
 
         </blockquote>
       </div>
