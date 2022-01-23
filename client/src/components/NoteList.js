@@ -3,7 +3,8 @@ import { useParams } from 'react-router-dom';
 import NoteForm from '../components/NoteForm';
 import { useMutation } from '@apollo/client';
 import { EDIT_ISCOMPLETE, DELETE_TODO } from '../utils/mutations';
-import Modal from 'react-bootstrap/Modal'
+import Modal from 'react-bootstrap/Modal';
+import dateHelp from '../utils/dateHelp';
 
 
 
@@ -11,7 +12,12 @@ const NoteList = (props) => {
   var todos = props.todos;
   let { dayId } = useParams();
   if (!dayId) {
-    dayId = new Date().toString().split(' ').slice(1, 4).join().replace(/,/g, "");
+    const year = dateHelp.getYear();
+    const day = dateHelp.getDay();
+    const monthLetters = dateHelp.getMonthLetters();
+    const month = dateHelp.monthConversion(monthLetters);
+    const todayDate = year + month + day;
+    dayId = todayDate;
   }
 
   const [edit, setEdit] = useState({
@@ -87,18 +93,18 @@ const NoteList = (props) => {
           <div className={
             //if todo is complete, cross it out and it'll disappear from home page if it's old
             todo.isComplete
-              ? `dark-color d-flex mb-1 complete`
-              : `dark-color d-flex mb-1`
+              ? `dark-color d-flex mb-1 complete borderNone`
+              : `dark-color d-flex mb-1 borderNone`
             &&
             //if todo is incomplete and old, it'll have a red border around it
             todo.date < dayId
               ? `dark-color d-flex mb-1 redBorder`
-              : `dark-color d-flex mb-1`
+              : `dark-color d-flex mb-1 borderNone`
 
           }
          
             key={todo._id} >
-            <button key={todo._id} onClick={() => completeTodo(todo._id)} className=" text-light mr-auto " id='todo-button'>
+            <button key={todo._id} onClick={() => completeTodo(todo._id)} className=" text-light mr-auto borderNone" id='todo-button'>
               {todo.task}
             </button>
             <p className="p-2" onClick={() => setEdit({ _id: todo._id, value: todo.task })}> <span role="img" aria-label="edit"><i className="far fa-edit accent-color-light"></i></span></p>

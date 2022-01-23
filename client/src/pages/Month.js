@@ -1,22 +1,28 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Container } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
-import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { GET_ME } from "../utils/queries";
+import dateHelp from '../utils/dateHelp';
 
 const Month = (props) => {
     const { loading, data, refetch } = useQuery(GET_ME);
     const todos = data?.me || [];
     var allTodos = todos.savedTodos;
-    const todayMonth = new Date().toString().split(' ').slice(1, 2);
-    // const monthDate;
-    // .slice(1, 4).join().replace(/,/g, ""
+
+    const year = dateHelp.getYear();
+    const day = dateHelp.getDay();
+    const monthLetters = dateHelp.getMonthLetters();
+    const monthNumber = dateHelp.monthConversion(monthLetters);
+    const thisMonth = monthNumber;
+    const fullNameMonth = dateHelp.monthFullName(thisMonth);
+    console.log(fullNameMonth)
+   
 
     var renderMonthlyReview;
     var monthId;
+    
 
-
+   
 
 
 
@@ -26,8 +32,8 @@ const Month = (props) => {
 
         if (!loading) {
             //gets all the todos that were created this month
-            var thisMonthTodo = allTodos.filter(todo => todo.date.toString().split('').slice(0, 3).join().replace(/,/g, "") === todayMonth[0])
-            console.log(thisMonthTodo[0].isComplete)
+            var thisMonthTodo = allTodos.filter(todo => dateHelp.getMonth(todo.date) === thisMonth)
+           console.log(thisMonthTodo, "this")
         }
     }
 
@@ -45,7 +51,7 @@ const Month = (props) => {
                                 <div>Loading...</div>
                             ) : (
 
-                                <ol>{todayMonth[0]} To-Dos
+                                <ol>{fullNameMonth} To-Dos
                                     {thisMonthTodo.map((todo) => (
 
                                         todo.isComplete ? (
