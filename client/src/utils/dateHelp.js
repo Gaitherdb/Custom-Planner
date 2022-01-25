@@ -1,12 +1,12 @@
 class dateHelp {
-//only used for the calendar where format is ex. jan 01 2022
+  //only used for the calendar where format is ex. jan 01 2022
   getYear(value) {
     if (value) {
       return value.toString().split(' ').slice(3, 4)[0];
     }
     return new Date().toString().split(' ').slice(3, 4)[0];
   }
-//only used for the calendar where format is ex. Jan 01 2022 
+  //only used for the calendar where format is ex. Jan 01 2022 
   getDay(value) {
     if (value) {
       return value.toString().split(' ').slice(2, 3)[0];
@@ -117,16 +117,15 @@ class dateHelp {
         break;
       default:
         month = "unknown";
-        break;
     }
     return month;
   }
 
   writtenDate(value) {
     let day = value.toString().split('').slice(6, 8).join().replace(/,/g, "");
-    
+
     let year = value.toString().split('').slice(0, 4).join().replace(/,/g, "");
-    
+
     let monthNum = this.getMonth(value);
     let month = this.monthFullName(monthNum);
     let date = month + " " + day + " " + year;
