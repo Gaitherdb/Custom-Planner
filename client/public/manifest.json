@@ -3,7 +3,7 @@
     "name": "Custom Calendar",
     "icons": [
         {
-            "src": "/logo.png",
+            "src": "/logo.PNG",
             "type": "image/png",
             "sizes": "48x48"
         }
