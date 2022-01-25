@@ -3,9 +3,9 @@
     "name": "Custom Calendar",
     "icons": [
         {
-            "src": "/logo.PNG",
+            "src": "/logo.v2.png",
             "type": "image/png",
-            "sizes": "48x48"
+            "sizes": "512x512"
         }
     ],
     "start_url": ".",
