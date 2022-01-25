@@ -5,7 +5,7 @@ import { GET_ME } from "../utils/queries";
 import dateHelp from '../utils/dateHelp';
 
 const Month = () => {
-    const { loading, data, refetch } = useQuery(GET_ME);
+    const { loading, data } = useQuery(GET_ME);
     const todos = data?.me || [];
     var allTodos = todos.savedTodos;
 

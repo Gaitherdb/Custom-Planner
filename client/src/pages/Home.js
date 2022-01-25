@@ -69,7 +69,7 @@ const Home = (props) => {
             view={view}
           />
         </div>
-        {/* value.toString().split(' ').slice(1, 4).join().replace(/,/g, "") */}
+        {/* value.toString().split(' ').slice(1, 4).join() */}
         <NoteForm
           value={todayDate}
           {...{ refetch }}
