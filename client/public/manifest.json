@@ -1,15 +1,16 @@
 {
-    "short_name": "CC",
-    "name": "Custom Calendar",
-    "icons": [
-        {
-            "src": "/logo.v2.png",
-            "type": "image/png",
-            "sizes": "512x512"
-        }
-    ],
-    "start_url": "./build",
-    "display": "standalone",
-    "theme_color": "#000000",
-    "background_color": "#ffffff"
+  "short_name": "CC",
+  "name": "Custom Calendar",
+  "icons": [
+    {
+      "src": "/logo.v2.PNG",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "./build",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
 }
