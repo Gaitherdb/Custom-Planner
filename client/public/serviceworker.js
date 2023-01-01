@@ -1,5 +1,5 @@
 const CACHE_NAME = "version-1";
-const urlsToCache = ['index.html', 'offline.html', 'manifest.json', 'serviceworker.js'];
+const urlsToCache = ['./', './index.html', './offline.html', './manifest.json',];
 
 const self = this;
 
