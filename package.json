@@ -1,7 +1,10 @@
 {
   "name": "notes-app",
   "version": "1.0.0",
-  "engines": { "node" : ">=16.0.0 <17.0.0"}, 
+  "engines": {
+    "node": ">=16.0.0 <17.0.0",
+    "npm": "8.5.0"
+  },
   "description": "",
   "main": "server/server.js",
   "scripts": {
@@ -16,5 +19,4 @@
   "devDependencies": {
     "concurrently": "^5.1.0"
   }
-  
 }
