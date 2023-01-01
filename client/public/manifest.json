@@ -6,7 +6,7 @@
       "src": "/logo.v2.PNG",
       "type": "image/png",
       "sizes": "512x512",
-      "purpose": "maskable"
+      "purpose": "any maskable"
     }
   ],
   "start_url": "./build",
