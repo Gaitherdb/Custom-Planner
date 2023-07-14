@@ -1,42 +1,43 @@
-const CACHE_NAME = "version-1";
-const urlsToCache = ['./', './index.html', './offline.html', './manifest.json',];
+const { warmStrategyCache } = require('workbox-recipes');
+const { CacheFirst, StaleWhileRevalidate } = require('workbox-strategies');
+const { registerRoute } = require('workbox-routing');
+const { CacheableResponsePlugin } = require('workbox-cacheable-response');
+const { ExpirationPlugin } = require('workbox-expiration');
+const { precacheAndRoute } = require('workbox-precaching/precacheAndRoute');
 
-const self = this;
+precacheAndRoute(self.__WB_MANIFEST);
 
-// Install serviceworker
-self.addEventListener('install', (event) => {
-    event.waitUntil(
-        caches.open(CACHE_NAME)
-            .then((cache) => {
-                console.log('Opened cache');
-
-                return cache.addAll(urlsToCache);
-            })
-    )
+// Set up page cache
+const pageCache = new CacheFirst({
+    cacheName: 'page-cache',
+    plugins: [
+        new CacheableResponsePlugin({
+            statuses: [0, 200],
+        }),
+        //expires 1 month
+        new ExpirationPlugin({
+            maxAgeSeconds: 30 * 24 * 60 * 60,
+        }),
+    ],
 });
-//Listen for requests
-self.addEventListener('fetch', (event) => {
-    event.respondWith(
-        caches.match(event.request)
-            .then(() => {
-                console.log("fetch")
-                return fetch(event.request)
-                    .catch(() => caches.match('offline.html'))
-            })
-    )
-});
-//Activate serviceworker
-self.addEventListener('activate', (event) => {
-    const cacheWhitelist = [];
-    cacheWhitelist.push(CACHE_NAME);
 
-    event.waitUntil(
-        caches.keys().then((cacheNames) => Promise.all(
-            cacheNames.map((cacheName) => {
-                if (!cacheWhitelist.includes(cacheName)) {
-                    return caches.delete(cacheName);
-                }
-            })
-        ))
-    )
+warmStrategyCache({
+    urls: ['/index.html', '/'],
+    strategy: pageCache,
 });
+
+registerRoute(({ request }) => request.mode === 'navigate', pageCache);
+
+// Set up asset cache
+//can also add images/fonts later
+registerRoute(
+    ({ request }) => ['style', 'script', 'worker'].includes(request.destination),
+    new StaleWhileRevalidate({
+        cacheName: 'asset-cache',
+        plugins: [
+            new CacheableResponsePlugin({
+                statuses: [0, 200],
+            }),
+        ],
+    })
+);
