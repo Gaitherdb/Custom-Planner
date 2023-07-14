@@ -20,8 +20,8 @@ module.exports = () => {
                 title: 'CustomCalendar'
             }),
             new InjectManifest({
-                swSrc: './serviceworker.js',
-                swDest: 'serviceworker.js',
+                swSrc: path.resolve(__dirname, '/public/service-worker.js'), // Update the path to the service worker file
+                swDest: 'service-worker.js',
             }),
             new WebpackPwaManifest({
                 fingerprints: false,
@@ -35,7 +35,7 @@ module.exports = () => {
                 publicPath: '/',
                 icons: [
                     {
-                        src: path.resolve('src/images/logo.png'),
+                        src: path.resolve('../public/logo.png'),
                         sizes: [96, 128, 192, 256, 384, 512],
                         destination: path.join('assets', 'icons'),
                     },
