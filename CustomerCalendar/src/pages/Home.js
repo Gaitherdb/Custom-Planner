@@ -6,8 +6,8 @@ import 'react-calendar/dist/Calendar.css';
 import NoteList from '../components/NoteList';
 import NoteForm from '../components/NoteForm';
 import { useQuery } from '@apollo/client';
-import { GET_ME } from '../utils/queries';
-import dateHelp from '../utils/dateHelp';
+import { GET_ME } from '../../utils/queries';
+import dateHelp from '../../utils/dateHelp';
 
 
 const Home = (props) => {
@@ -51,7 +51,7 @@ const Home = (props) => {
     let valueMonthLetters = dateHelp.getMonthLetters(value);
     let valueMonth = dateHelp.monthConversion(valueMonthLetters);
     valueDate = valueYear + valueMonth + valueDay;
-    
+
     //changes the url to the date page for the date selected on the calendar
     history.push(`/day/${(valueDate)}`); // This is be executed when the state changes
   }, [value]);
