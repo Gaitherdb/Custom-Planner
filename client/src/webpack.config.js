@@ -7,8 +7,8 @@ module.exports = () => {
     return {
         mode: 'development',
         entry: {
-            main: './src/js/index.js',
-            install: './src/js/install.js'
+            main: './src/index.js',
+
         },
         output: {
             filename: '[name].bundle.js',
@@ -20,7 +20,7 @@ module.exports = () => {
                 title: 'CustomCalendar'
             }),
             new InjectManifest({
-                swSrc: path.resolve(__dirname, '/public/service-worker.js'), // Update the path to the service worker file
+                swSrc: path.resolve(__dirname, './public/service-worker.js'), // Update the path to the service worker file
                 swDest: 'service-worker.js',
             }),
             new WebpackPwaManifest({
@@ -35,7 +35,7 @@ module.exports = () => {
                 publicPath: '/',
                 icons: [
                     {
-                        src: path.resolve('../public/logo.png'),
+                        src: path.resolve('public/logo.png'),
                         sizes: [96, 128, 192, 256, 384, 512],
                         destination: path.join('assets', 'icons'),
                     },
