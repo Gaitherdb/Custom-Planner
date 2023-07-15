@@ -11,4 +11,5 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
-serviceWorkerRegistration.register(); //serviceWorker.js
+serviceWorkerRegistration.unregister();
+serviceWorkerRegistration.register(); 
