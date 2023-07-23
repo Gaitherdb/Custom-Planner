@@ -73,13 +73,15 @@ const resolvers = {
     },
 
     async editIsComplete(parent, { todosId, isComplete }, context) {
-
+      console.log(isComplete, "isComplete")
       if (context.user) {
-
+        console.log("user")
         const updatedTodo = await Todo.findByIdAndUpdate(
           { _id: todosId },
-          { isComplete },
-          { completedDate: new Date() },
+          {
+            isComplete,
+            completedDate: new Date()
+          },
           { new: true }
         );
 

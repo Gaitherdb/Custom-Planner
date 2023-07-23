@@ -83,6 +83,8 @@ const NoteList = (props) => {
   if (!todos) {
     return <h3>No notes yet</h3>;
   }
+  // Sort the todos so that the ones with repeat=true come first
+  todos.sort((a, b) => b.repeat - a.repeat);
 
   return (
     <div>
@@ -91,14 +93,13 @@ const NoteList = (props) => {
       {todos &&
         todos.map((todo) => (
           <div className={
+            `dark-color d-flex mb-1` +
             //if todo is complete, cross it out and it'll disappear from home page if it's old
-            todo.isComplete
-              ? `dark-color d-flex mb-1 complete borderNone`
-              //if todo is incomplete and old, it'll have a red border around it
-              : todo.date < dayId
-                ? `dark-color d-flex mb-1 redBorder`
-                : `dark-color d-flex mb-1 borderNone`
-
+            (todo.isComplete ? ` complete` : ``) +
+            //if todo is incomplete and old, it'll have a red border around it
+            (todo.date < dayId ? ` redBorder` : ``) +
+            //if todo is set to repeat, it'll have a green border
+            (todo.repeat ? ` repeatTask` : ` borderNone`)
           }
 
             key={todo._id} >
