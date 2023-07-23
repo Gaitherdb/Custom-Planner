@@ -94,10 +94,8 @@ const NoteList = (props) => {
             //if todo is complete, cross it out and it'll disappear from home page if it's old
             todo.isComplete
               ? `dark-color d-flex mb-1 complete borderNone`
-              : `dark-color d-flex mb-1 borderNone`
-                &&
-                //if todo is incomplete and old, it'll have a red border around it
-                todo.date < dayId
+              //if todo is incomplete and old, it'll have a red border around it
+              : todo.date < dayId
                 ? `dark-color d-flex mb-1 redBorder`
                 : `dark-color d-flex mb-1 borderNone`
 
