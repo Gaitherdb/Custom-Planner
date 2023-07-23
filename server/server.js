@@ -10,6 +10,18 @@ const resetDailies = require('./utils/resetDailies');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+async function checkResetDailies() {
+  const lastResetTime = await getLastResetTime();
+  const currentTime = new Date();
+  const oneDay = 24 * 60 * 60 * 1000;
+
+  if (!lastResetTime || currentTime - lastResetTime >= oneDay) {
+    resetDailies();
+    setLastResetTime(currentTime);
+  }
+}
+
+
 const server = new ApolloServer({
   typeDefs,
   resolvers,
@@ -31,8 +43,8 @@ app.use(express.static(path.join(__dirname, '../client/build')));
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
-
-// cron.schedule('0 0 * * *', resetDailies);
+resetDailies();
+cron.schedule('0 0 * * *', checkResetDailies);
 
 db.once('open', () => {
   app.listen(PORT, () => console.log(`🌍 Now listening on localhost:${PORT}`));
