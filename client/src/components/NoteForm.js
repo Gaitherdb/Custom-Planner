@@ -24,15 +24,18 @@ function NoteForm(props) {
   const [todosId, set_id] = useState('');
   const [saveTodo, { error }] = useMutation(SAVE_TODO);
   const [editTodo] = useMutation(EDIT_TODO);
-  
+  let repeat = false;
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+    console.log(repeat, "repeat")
 
     try {
       const { data } = await saveTodo({
         variables: {
           task,
-          date
+          date,
+          repeat
         },
       });
       setTask('');
@@ -48,7 +51,7 @@ function NoteForm(props) {
     event.preventDefault();
 
     try {
-      const {data} = await editTodo({
+      const { data } = await editTodo({
         variables: {
           todosId,
           task,

@@ -41,7 +41,7 @@ const resolvers = {
     },
     // save a note to a user's `savedTodos` field by adding it to the set (to prevent duplicates)
     // user comes from `req.user` created in the auth middleware function
-    async saveTodo(parent, { task, date }, context) {
+    async saveTodo(parent, { task, date, repeat }, context) {
 
       if (context.user) {
         const todo = await Todo.create({ task, date, repeat });
