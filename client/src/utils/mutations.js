@@ -57,6 +57,19 @@ export const EDIT_ISCOMPLETE = gql`
   }
 `;
 
+export const REPEAT_TODO = gql`
+  mutation repeatTask($todosId: ID!, $repeat: Boolean) {
+    repeatTask(todosId: $todosId, repeat: $repeat) {
+      _id
+      task
+      createdAt
+      date
+      isComplete
+      repeat
+    }
+  }
+`;
+
 export const DELETE_TODO = gql`
   mutation deleteTodo($todosId: ID!) {
     deleteTodo(todosId: $todosId) {
