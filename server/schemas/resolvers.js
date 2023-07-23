@@ -79,7 +79,7 @@ const resolvers = {
         const updatedTodo = await Todo.findByIdAndUpdate(
           { _id: todosId },
           { isComplete },
-          { completedDate: new Date().toISOString() },
+          { completedDate: new Date() },
           { new: true }
         );
 

@@ -24,7 +24,7 @@ const todoSchema = new Schema({
     type: Boolean,
     default: false
   },
-  completeDate: {
+  completedDate: {
     type: Date,
   }
 

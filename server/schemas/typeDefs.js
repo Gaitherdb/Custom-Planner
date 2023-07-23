@@ -16,6 +16,7 @@ const typeDefs = gql`
     date: String!
     isComplete: Boolean
     repeat: Boolean
+    completedDate: String
   }
 
   type Auth {

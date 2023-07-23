@@ -14,7 +14,7 @@ export const GET_ME = gql`
         date
         isComplete
         repeat
-        completeDate
+        completedDate
       }
     }
   }

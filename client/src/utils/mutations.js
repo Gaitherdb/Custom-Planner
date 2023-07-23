@@ -30,6 +30,8 @@ export const SAVE_TODO = gql`
       createdAt
       date
       isComplete
+      repeat
+      completedDate
     }
   }
 `;
@@ -42,6 +44,8 @@ export const EDIT_TODO = gql`
       createdAt
       date
       isComplete
+      repeat
+      completedDate
     }
   }
 `;
@@ -53,6 +57,8 @@ export const EDIT_ISCOMPLETE = gql`
       createdAt
       date
       isComplete
+      repeat
+      completedDate
     }
   }
 `;
@@ -66,6 +72,7 @@ export const REPEAT_TODO = gql`
       date
       isComplete
       repeat
+      completedDate
     }
   }
 `;
