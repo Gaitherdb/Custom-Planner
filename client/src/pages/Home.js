@@ -36,13 +36,14 @@ const Home = (props) => {
       //finds the ids of all the incomplete todos
       var ids = new Set(inComplete.map(d => d._id));
       // Include completed todos that have the repeat field set to true
-      var repeatTodos = todos.savedTodos.filter(todo => todo.isComplete === true && todo.repeat === true);
-      // Reset the isComplete field of these todos to false
-      repeatTodos.forEach(todo => {
-        todo.isComplete = false;
-      });
+      // var repeatTodos = todos.savedTodos.filter(todo => todo.isComplete === true && todo.repeat === true);
+      // // Reset the isComplete field of these todos to false
+      // repeatTodos.forEach(todo => {
+      //   todo.isComplete = false;
+      // });
       //a list of all the incomplete todos and any todos created today except for any incomplete todos from today as they are already accounted for
-      var merged = [...inComplete, ...thisPageTodo.filter(id => !ids.has(id._id)), ...repeatTodos];
+      var merged = [...inComplete, ...thisPageTodo.filter(id => !ids.has(id._id))];
+      // , ...repeatTodos
 
     }
   };

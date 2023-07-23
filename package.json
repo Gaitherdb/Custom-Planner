@@ -18,5 +18,8 @@
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^5.1.0"
+  },
+  "dependencies": {
+    "cron": "^2.3.1"
   }
 }

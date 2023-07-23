@@ -4,6 +4,8 @@ const path = require('path');
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 const { authMiddleware } = require('./utils/auth');
+const cron = require('node-cron');
+const resetDailies = require('./utils/resetDailies');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -30,6 +32,7 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 
+// cron.schedule('0 0 * * *', resetDailies);
 
 db.once('open', () => {
   app.listen(PORT, () => console.log(`🌍 Now listening on localhost:${PORT}`));

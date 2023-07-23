@@ -44,7 +44,7 @@ const resolvers = {
     async saveTodo(parent, { task, date }, context) {
 
       if (context.user) {
-        const todo = await Todo.create({ task, date });
+        const todo = await Todo.create({ task, date, repeat });
 
         await User.findOneAndUpdate(
           { _id: context.user._id },
