@@ -15,6 +15,7 @@ const typeDefs = gql`
     createdAt: String
     date: String!
     isComplete: Boolean
+    repeat: Boolean
   }
 
   type Auth {
@@ -33,6 +34,7 @@ const typeDefs = gql`
     saveTodo(task: String!, date: String!): Todo
     editTodo(todosId: ID!, task: String!, date: String!): Todo
     editIsComplete(todosId: ID!, isComplete: Boolean): Todo
+    repeatTask(todosId: ID!, repeat: Boolean):Todo
     deleteTodo(todosId: ID!): Todo
   }
 `;
