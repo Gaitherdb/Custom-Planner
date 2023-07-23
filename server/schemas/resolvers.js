@@ -41,10 +41,10 @@ const resolvers = {
     },
     // save a note to a user's `savedTodos` field by adding it to the set (to prevent duplicates)
     // user comes from `req.user` created in the auth middleware function
-    async saveTodo(parent, { task, date }, context) {
-        
+    async saveTodo(parent, { task, date, repeat }, context) {
+
       if (context.user) {
-        const todo = await Todo.create({ task, date });
+        const todo = await Todo.create({ task, date, repeat });
 
         await User.findOneAndUpdate(
           { _id: context.user._id },
@@ -60,37 +60,55 @@ const resolvers = {
     async editTodo(parent, { todosId, task }, context) {
 
       if (context.user) {
-        
+
         const updatedTodo = await Todo.findByIdAndUpdate(
           { _id: todosId },
           { task },
-          { new: true}
+          { new: true }
         );
-        
+
         return updatedTodo;
       }
       throw new AuthenticationError('You need to be logged in!');
     },
 
-    async editIsComplete(parent, { todosId, isComplete}, context) {
-
+    async editIsComplete(parent, { todosId, isComplete }, context) {
+      console.log(isComplete, "isComplete")
       if (context.user) {
-        
+        console.log("user")
         const updatedTodo = await Todo.findByIdAndUpdate(
           { _id: todosId },
-          { isComplete },
-          { new: true}
+          {
+            isComplete,
+            completedDate: new Date()
+          },
+          { new: true }
         );
-    
+
+        return updatedTodo;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+
+    async repeatTask(parent, { todosId, repeat }, context) {
+
+      if (context.user) {
+
+        const updatedTodo = await Todo.findByIdAndUpdate(
+          { _id: todosId },
+          { repeat },
+          { new: true }
+        );
+
         return updatedTodo;
       }
       throw new AuthenticationError('You need to be logged in!');
     },
 
     async deleteTodo(parent, { todosId }, context) {
-      console.log("Hhi")
+
       if (context.user) {
-        const deletedTodo = await Todo.findOneAndDelete({ _id: todosId});
+        const deletedTodo = await Todo.findOneAndDelete({ _id: todosId });
         return deletedTodo;
       }
       throw new AuthenticationError('You need to be logged in!');

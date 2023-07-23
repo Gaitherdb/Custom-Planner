@@ -1,117 +1,119 @@
 .complete {
-    text-decoration: line-through;
-    opacity: 0.4;
-  }
+  text-decoration: line-through;
+  opacity: 0.4;
+}
 
-  .light-color {
-    background-color: rgb(101, 109, 74)
-  }
-  
-  .dark-color {
-    background-color: rgb(55, 58, 54);
-  }
-  
-  .background-color {
-    background-color: rgb(237, 224, 212)
-    
-  }
-  
-  .accent-color {
-    background-color: rgb(127, 85, 57)
-  }
-  
-  .accent-color-light {
-    background-color: rgb(166, 138, 100)
-  }
+.light-color {
+  background-color: rgb(101, 109, 74);
+}
 
-  #todo-button{
-    cursor:pointer;
-    padding: 3% 6% 3% 4%;
-  }
-  
-   button {
-      background-color: rgb(55, 58, 54);
-      color: rgb(55, 58, 54);
-      cursor: pointer;
-      /* color: rgb(237, 224, 212); */
-      /* border: rgb(237, 224, 212); */
-      
-    }
+.dark-color {
+  background-color: rgb(55, 58, 54);
+}
 
-    .dateFont {
-      font-size: 50%;
-    }
+.background-color {
+  background-color: rgb(237, 224, 212);
+}
 
-    .note {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      background-color: rgb(101, 109, 74);
-      border-radius: 10px;
-      padding: 1rem;
-      min-height: 170px;
-    }
-    
-    .notes-group {
-      display: grid;
-      grid-gap: 1rem;
-      grid-template-columns: repeat (auto-fit, minmax(245, 1fr));
-    }
-    
-    .note-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+.accent-color {
+  background-color: rgb(127, 85, 57);
+}
 
-    .p-2 {
-      cursor: pointer;
-    }
+.accent-color-light {
+  background-color: rgb(166, 138, 100);
+}
 
-    .btn {
-      color: whitesmoke;
-    }
+#todo-button {
+  cursor: pointer;
+  padding: 3% 6% 3% 4%;
+}
 
-    .calDiv{
-      align-content: center;
-    }
+button {
+  background-color: rgb(55, 58, 54);
+  color: rgb(55, 58, 54);
+  cursor: pointer;
+  /* color: rgb(237, 224, 212); */
+  /* border: rgb(237, 224, 212); */
+}
 
-    .p-4{
-      text-align: center;
-    }
+.dateFont {
+  font-size: 50%;
+}
 
-    .calDiv{
-      align-content: center;
-    }
+.note {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: rgb(101, 109, 74);
+  border-radius: 10px;
+  padding: 1rem;
+  min-height: 170px;
+}
 
-    .listItem{
-      display: list-item! important;
-    }
-    .redBorder{
-      border-style: inset;
-      border-color: rgb(139, 17, 17);
-      border-width: thin medium thin;
-    }
-    .wholeCon{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-    }
+.notes-group {
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat (auto-fit, minmax(245, 1fr));
+}
 
-    .todolDiv{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-    }
+.note-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
-    .upbutton{
-      color: whitesmoke
-    }
+.p-2 {
+  cursor: pointer;
+}
 
-   
+.btn {
+  color: whitesmoke;
+}
 
-    .borderNone{
-      border: none;
-    }
+.calDiv {
+  align-content: center;
+}
+
+.p-4 {
+  text-align: center;
+}
+
+.calDiv {
+  align-content: center;
+}
+
+.listItem {
+  display: list-item !important;
+}
+.redBorder {
+  border-style: inset;
+  border-color: rgb(139, 17, 17);
+  border-width: thin medium thin;
+}
+.wholeCon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.todolDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.upbutton {
+  color: whitesmoke;
+}
+
+.repeatTask {
+  border-style: inset;
+  border-color: green;
+  border-width: thin medium thin;
+}
+
+.borderNone {
+  border: none;
+}

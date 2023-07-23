@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import NoteForm from '../components/NoteForm';
 import { useMutation } from '@apollo/client';
-import { EDIT_ISCOMPLETE, DELETE_TODO } from '../utils/mutations';
+import { EDIT_ISCOMPLETE, DELETE_TODO, REPEAT_TODO } from '../utils/mutations';
 import Modal from 'react-bootstrap/Modal';
 import dateHelp from '../utils/dateHelp';
 
@@ -45,7 +45,7 @@ const NoteList = (props) => {
     }
 
     let todosId = id;
-    
+
     try {
       const { data } = await editIsComplete({
         variables: {
@@ -83,6 +83,8 @@ const NoteList = (props) => {
   if (!todos) {
     return <h3>No notes yet</h3>;
   }
+  // Sort the todos so that the ones with repeat=true come first
+  todos.sort((a, b) => b.repeat - a.repeat);
 
   return (
     <div>
@@ -91,48 +93,45 @@ const NoteList = (props) => {
       {todos &&
         todos.map((todo) => (
           <div className={
+            `dark-color d-flex mb-1` +
             //if todo is complete, cross it out and it'll disappear from home page if it's old
-            todo.isComplete
-              ? `dark-color d-flex mb-1 complete borderNone`
-              : `dark-color d-flex mb-1 borderNone`
-            &&
+            (todo.isComplete ? ` complete` : ``) +
             //if todo is incomplete and old, it'll have a red border around it
-            todo.date < dayId
-              ? `dark-color d-flex mb-1 redBorder`
-              : `dark-color d-flex mb-1 borderNone`
-
+            (todo.date < dayId ? ` redBorder` : ``) +
+            //if todo is set to repeat, it'll have a green border
+            (todo.repeat ? ` repeatTask` : ` borderNone`)
           }
-         
+
             key={todo._id} >
             <button key={todo._id} onClick={() => completeTodo(todo._id)} className=" text-light mr-auto borderNone" id='todo-button'>
               {todo.task}
             </button>
             <p className="p-2" onClick={() => setEdit({ _id: todo._id, value: todo.task })}> <span role="img" aria-label="edit"><i className="far fa-edit accent-color-light"></i></span></p>
             <p className="p-2" variant="primary" onClick={handleShow} ><span role="img" aria-label="delete"><i className="far fa-trash-alt accent-color-light"></i></span> </p>
-           
+
             <Modal
-        show={show}
-        onHide={handleClose}
-        backdrop="static"
-        keyboard={false}
-      >
-        <Modal.Header closeButton>
-          <Modal.Title><span role="img" aria-label="delete"><i className="far fa-trash-alt "></i></span></Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          Are you sure you want to delete?
-        </Modal.Body>
-        <Modal.Footer>
-          <button className="text-light" variant="secondary" onClick={handleClose}>
-            Close
-          </button>
-          <button className="text-light" variant="primary" onClick={() => handleDelete({ id: todo._id })}>Yes</button>
-        </Modal.Footer>
-      </Modal>
+              show={show}
+              onHide={handleClose}
+              backdrop="static"
+              keyboard={false}
+            >
+              <Modal.Header closeButton>
+                <Modal.Title><span role="img" aria-label="delete"><i className="far fa-trash-alt "></i></span></Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                Are you sure you want to delete?
+              </Modal.Body>
+              <Modal.Footer>
+                <button className="text-light" variant="secondary" onClick={handleClose}>
+                  Close
+                </button>
+                <button className="text-light" variant="primary" onClick={() => handleDelete({ id: todo._id })}>Yes</button>
+              </Modal.Footer>
+            </Modal>
           </div>
         ))}
 
-     
+
 
     </div>
   );

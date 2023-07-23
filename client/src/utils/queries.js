@@ -13,6 +13,8 @@ export const GET_ME = gql`
         createdAt
         date
         isComplete
+        repeat
+        completedDate
       }
     }
   }

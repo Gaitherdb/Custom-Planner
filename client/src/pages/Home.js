@@ -35,8 +35,15 @@ const Home = (props) => {
       var thisPageTodo = todos.savedTodos.filter(todo => todo.date === todayDate);
       //finds the ids of all the incomplete todos
       var ids = new Set(inComplete.map(d => d._id));
+      // Include completed todos that have the repeat field set to true
+      // var repeatTodos = todos.savedTodos.filter(todo => todo.isComplete === true && todo.repeat === true);
+      // // Reset the isComplete field of these todos to false
+      // repeatTodos.forEach(todo => {
+      //   todo.isComplete = false;
+      // });
       //a list of all the incomplete todos and any todos created today except for any incomplete todos from today as they are already accounted for
       var merged = [...inComplete, ...thisPageTodo.filter(id => !ids.has(id._id))];
+      // , ...repeatTodos
 
     }
   };
@@ -51,7 +58,7 @@ const Home = (props) => {
     let valueMonthLetters = dateHelp.getMonthLetters(value);
     let valueMonth = dateHelp.monthConversion(valueMonthLetters);
     valueDate = valueYear + valueMonth + valueDay;
-    
+
     //changes the url to the date page for the date selected on the calendar
     history.push(`/day/${(valueDate)}`); // This is be executed when the state changes
   }, [value]);

@@ -21,10 +21,12 @@ function NoteForm(props) {
 
   const date = dayId;
   const [task, setTask] = useState('');
+  const [repeat, setRepeat] = useState(false);
   const [todosId, set_id] = useState('');
   const [saveTodo, { error }] = useMutation(SAVE_TODO);
   const [editTodo] = useMutation(EDIT_TODO);
-  
+
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
@@ -32,7 +34,8 @@ function NoteForm(props) {
       const { data } = await saveTodo({
         variables: {
           task,
-          date
+          date,
+          repeat
         },
       });
       setTask('');
@@ -44,11 +47,15 @@ function NoteForm(props) {
     }
   };
 
+  function handleRepeatChange(e) {
+    setRepeat(e.target.checked);
+  }
+
   const handleEditSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const {data} = await editTodo({
+      const { data } = await editTodo({
         variables: {
           todosId,
           task,
@@ -84,7 +91,19 @@ function NoteForm(props) {
                   style={{ lineHeight: '1.5', resize: 'vertical' }}
                   onChange={(e) => setTask(e.target.value)}
                 ></textarea>
+
+                <label>
+                  Repeat:
+                  <input
+                    type="checkbox"
+                    checked={repeat}
+                    onChange={handleRepeatChange}
+                  />
+                </label>
+
               </div>
+
+
 
               <div className="col-12">
                 <button className="btn btn-block py-3 button dark-color" type="submit">
