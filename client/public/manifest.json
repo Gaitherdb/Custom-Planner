@@ -9,13 +9,13 @@
       "purpose": "any maskable"
     },
     {
-      "src": "/logo.png",
+      "src": "/logo.PNG",
       "type": "image/png",
       "sizes": "48x48",
       "purpose": "any maskable"
     }
   ],
-  "start_url": "./build",
+  "start_url": "/",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff"
